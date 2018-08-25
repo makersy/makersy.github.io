@@ -134,7 +134,7 @@
     root: '/',
     scheme: 'Muse',
     version: '6.4.0',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -157,13 +157,14 @@
 
 
   <meta name="description" content="网易云音乐代码&amp;lt;!-- 网易云音乐 --&amp;gt;   &amp;lt;div id=&amp;quot;musicplayer&amp;quot;&amp;gt;     &amp;lt;iframe frameborder=&amp;quot;no&amp;quot; border=&amp;quot;0&amp;quot; marginwidth=&amp;quot;0&amp;quot; marginheight=&amp;quot;0&amp;quot; width=330 heigh">
+<meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo_nexT主题的一些优化">
 <meta property="og:url" content="http://yoursite.com/2018/08/24/Hexo-nexT主题的一些优化/index.html">
 <meta property="og:site_name" content="Makersy&#39;s blog">
 <meta property="og:description" content="网易云音乐代码&amp;lt;!-- 网易云音乐 --&amp;gt;   &amp;lt;div id=&amp;quot;musicplayer&amp;quot;&amp;gt;     &amp;lt;iframe frameborder=&amp;quot;no&amp;quot; border=&amp;quot;0&amp;quot; marginwidth=&amp;quot;0&amp;quot; marginheight=&amp;quot;0&amp;quot; width=330 heigh">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-24T12:34:03.149Z">
+<meta property="og:updated_time" content="2018-08-25T09:22:59.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo_nexT主题的一些优化">
 <meta name="twitter:description" content="网易云音乐代码&amp;lt;!-- 网易云音乐 --&amp;gt;   &amp;lt;div id=&amp;quot;musicplayer&amp;quot;&amp;gt;     &amp;lt;iframe frameborder=&amp;quot;no&amp;quot; border=&amp;quot;0&amp;quot; marginwidth=&amp;quot;0&amp;quot; marginheight=&amp;quot;0&amp;quot; width=330 heigh">
@@ -385,6 +386,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -439,6 +442,24 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -526,6 +547,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+          
+        </div>
+      
 
       
       
@@ -583,6 +610,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -624,7 +653,33 @@
               
 
               
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
             </nav>
           
@@ -687,6 +742,8 @@
       
         <div class="back-to-top">
           <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
           
         </div>
       
@@ -812,6 +869,8 @@
 
 
 
+  
+
 
 
   
@@ -837,6 +896,11 @@
   
   
     <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
   
 
 

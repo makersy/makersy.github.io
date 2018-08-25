@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[Hexo_nexT主题的一些优化]]></title>
-    <url>%2F2018%2F08%2F24%2FHexo-nexT%E4%B8%BB%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BC%98%E5%8C%96%2F</url>
-    <content type="text"><![CDATA[网易云音乐代码&lt;!-- 网易云音乐 --&gt; &lt;div id=&quot;musicplayer&quot;&gt; &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=110 src=&quot;//music.163.com/outchain/player?type=0&amp;id=2384074016&amp;auto=0&amp;height=90&quot;&gt;&lt;/iframe&gt; &lt;/div&gt; 参考百度]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[hello]]></title>
-    <url>%2F2018%2F08%2F23%2Fhello%2F</url>
-    <content type="text"><![CDATA[Hello 嗯，花费了大概一天的时间才搭好这个小小的博客，对于啥经验都没有的我来说，已经很满足了。参考了网上很多大佬的教程，也遇到了很多的网上都没有解答的问题(比如git bash不识别nodejs…)，但在完成后看到界面的瞬间还是很有成就感的。为什么要建博客呢，原因也挺多的，最主要的还是想有个属于自己的地方，存放一些学习的资料，记录学习的历程，起个备忘录和日记的作用。 那么，就从今天开始吧。]]></content>
-  </entry>
+<search> 
+  
+    
+    <entry>
+      <title>Hexo_nexT主题的一些优化</title>
+      <link href="/2018/08/24/Hexo-nexT%E4%B8%BB%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BC%98%E5%8C%96/"/>
+      <url>/2018/08/24/Hexo-nexT%E4%B8%BB%E9%A2%98%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BC%98%E5%8C%96/</url>
+      <content type="html"><![CDATA[<h1 id="网易云音乐代码"><a href="#网易云音乐代码" class="headerlink" title="网易云音乐代码"></a>网易云音乐代码</h1><pre><code>&lt;!-- 网易云音乐 --&gt;  &lt;div id=&quot;musicplayer&quot;&gt;    &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=110 src=&quot;//music.163.com/outchain/player?type=0&amp;id=2384074016&amp;auto=0&amp;height=90&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;</code></pre><p>参考<a href="http://www.baidu.com" target="_blank" rel="noopener">百度</a></p>]]></content>
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>hello</title>
+      <link href="/2018/08/23/hello/"/>
+      <url>/2018/08/23/hello/</url>
+      <content type="html"><![CDATA[<h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello"></a>Hello</h1><a id="more"></a><p>  嗯，花费了大概一天的时间才搭好这个小小的博客，对于啥经验都没有的我来说，已经很满足了。参考了网上很多大佬的教程，也遇到了很多的网上都没有解答的问题(比如git bash不识别nodejs…)，但在完成后看到界面的瞬间还是很有成就感的。<br>为什么要建博客呢，原因也挺多的，最主要的还是想有个属于自己的地方，存放一些学习的资料，记录学习的历程，起个备忘录和日记的作用。  </p><p>那么，就从今天开始吧。</p>]]></content>
+      
+      
+    </entry>
+    
+  
+  
 </search>
