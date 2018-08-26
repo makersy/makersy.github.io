@@ -181,8 +181,6 @@
 
 
 
-  <link rel="canonical" href="https://makersy.top/ACM/STL/PAT L2-019 悄悄关注/"/>
-
 
 
 <script type="text/javascript" id="page.configurations">
@@ -546,10 +544,10 @@
 <p>之后给出该用户点赞的信息：首先给出一个不超过10000的正整数M，随后M行，每行给出一个被其点赞的用户ID和对该用户的点赞次数（不超过1000），以空格分隔。注意：用户ID是一个用户的唯一身份标识。题目保证在关注列表中没有重复用户，在点赞信息中也没有重复用户。</p>
 <p><strong>输出格式：</strong></p>
 <p>我们认为被该用户点赞次数大于其点赞平均数、且不在其关注列表上的人，很可能是其悄悄关注的人。根据这个假设，请你按用户ID字母序的升序输出可能是其悄悄关注的人，每行1个ID。如果其实并没有这样的人，则输出“Bing Mei You”。</p>
-<p>输入样例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">10 GAO3 Magi Zha1 Sen1 Quan FaMK LSum Eins FatM LLao</span><br><span class="line">8</span><br><span class="line">Magi 50</span><br><span class="line">Pota 30</span><br><span class="line">LLao 3</span><br><span class="line">Ammy 48</span><br><span class="line">Dave 15</span><br><span class="line">GAO3 31</span><br><span class="line">Zoro 1</span><br><span class="line">Cath 60</span><br></pre></td></tr></table></figure></p>
-<p>输出样例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Ammy</span><br><span class="line">Cath</span><br><span class="line">Pota</span><br></pre></td></tr></table></figure></p>
-<p>输入样例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">11 GAO3 Magi Zha1 Sen1 Quan FaMK LSum Eins FatM LLao Pota</span><br><span class="line">7</span><br><span class="line">Magi 50</span><br><span class="line">Pota 30</span><br><span class="line">LLao 48</span><br><span class="line">Ammy 3</span><br><span class="line">Dave 15</span><br><span class="line">GAO3 31</span><br><span class="line">Zoro 29</span><br></pre></td></tr></table></figure></p>
-<p>输出样例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bing Mei You</span><br></pre></td></tr></table></figure></p>
+<p>输入样例1：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> GAO3 Magi Zha1 Sen1 Quan FaMK LSum Eins FatM LLao</span><br><span class="line"><span class="number">8</span></span><br><span class="line">Magi <span class="number">50</span></span><br><span class="line">Pota <span class="number">30</span></span><br><span class="line">LLao <span class="number">3</span></span><br><span class="line">Ammy <span class="number">48</span></span><br><span class="line">Dave <span class="number">15</span></span><br><span class="line">GAO3 <span class="number">31</span></span><br><span class="line">Zoro <span class="number">1</span></span><br><span class="line">Cath <span class="number">60</span></span><br></pre></td></tr></table></figure></p>
+<p>输出样例1：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Ammy</span></span><br><span class="line"><span class="attribute">Cath</span></span><br><span class="line"><span class="attribute">Pota</span></span><br></pre></td></tr></table></figure></p>
+<p>输入样例2：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">11</span> GAO3 Magi Zha1 Sen1 Quan FaMK LSum Eins FatM LLao Pota</span><br><span class="line"><span class="number">7</span></span><br><span class="line">Magi <span class="number">50</span></span><br><span class="line">Pota <span class="number">30</span></span><br><span class="line">LLao <span class="number">48</span></span><br><span class="line">Ammy <span class="number">3</span></span><br><span class="line">Dave <span class="number">15</span></span><br><span class="line">GAO3 <span class="number">31</span></span><br><span class="line">Zoro <span class="number">29</span></span><br></pre></td></tr></table></figure></p>
+<p>输出样例2：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Bing </span>Mei You</span><br></pre></td></tr></table></figure></p>
 <p>题目比较简单，就是找出点赞数大于均值且名字不在关注列表里的人。刚开始我还是犯了错误：</p>
 <ol>
 <li><p>为了将列表按字典顺序排序，用排序来实现…后来发现用set存储时自动就排序了。然后不知道set存储字符串要用string更方便，用char*好像不行；</p>
@@ -839,11 +837,6 @@
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  
-    <span class="site-uv" title="总访客量">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
   
 
   
