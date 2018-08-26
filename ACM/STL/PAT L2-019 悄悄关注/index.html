@@ -141,7 +141,7 @@
     root: '/',
     scheme: 'Muse',
     version: '6.4.0',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -164,14 +164,14 @@
 
 
   <meta name="description" content="一道水题">
-<meta name="keywords" content="算法,ACM,C&#x2F;C++">
+<meta name="keywords" content="算法,ACM,STL,C&#x2F;C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PAT L2-019. 悄悄关注">
 <meta property="og:url" content="https://makersy.top/ACM/STL/PAT L2-019 悄悄关注/index.html">
 <meta property="og:site_name" content="Makersy的博客">
 <meta property="og:description" content="一道水题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-25T15:50:54.020Z">
+<meta property="og:updated_time" content="2018-08-26T07:47:13.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PAT L2-019. 悄悄关注">
 <meta name="twitter:description" content="一道水题">
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.1k</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -516,7 +516,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -536,27 +536,51 @@
       
 
       
-        <p>一道水题<br><a id="more"></a><br><strong>题目:</strong><br>新浪微博上有个“悄悄关注”，一个用户悄悄关注的人，不出现在这个用户的关注列表上，但系统会推送其悄悄关注的人发表的微博给该用户。现在我们来做一回网络侦探，根据某人的关注列表和其对其他用户的点赞情况，扒出有可能被其悄悄关注的人。</p>
+        <p>一道水题<br><a id="more"></a></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>新浪微博上有个“悄悄关注”，一个用户悄悄关注的人，不出现在这个用户的关注列表上，但系统会推送其悄悄关注的人发表的微博给该用户。现在我们来做一回网络侦探，根据某人的关注列表和其对其他用户的点赞情况，扒出有可能被其悄悄关注的人。</p>
+</blockquote>
 <p><strong>输入格式：</strong></p>
+<blockquote>
 <p>输入首先在第一行给出某用户的关注列表，格式如下：</p>
+</blockquote>
+<blockquote>
 <p>人数N 用户1 用户2 …… 用户N</p>
+</blockquote>
+<blockquote>
 <p>其中N是不超过5000的正整数，每个“用户i”（i=1, …, N）是被其关注的用户的ID，是长度为4位的由数字和英文字母组成的字符串，各项间以空格分隔。</p>
+</blockquote>
+<blockquote>
 <p>之后给出该用户点赞的信息：首先给出一个不超过10000的正整数M，随后M行，每行给出一个被其点赞的用户ID和对该用户的点赞次数（不超过1000），以空格分隔。注意：用户ID是一个用户的唯一身份标识。题目保证在关注列表中没有重复用户，在点赞信息中也没有重复用户。</p>
+</blockquote>
 <p><strong>输出格式：</strong></p>
+<blockquote>
 <p>我们认为被该用户点赞次数大于其点赞平均数、且不在其关注列表上的人，很可能是其悄悄关注的人。根据这个假设，请你按用户ID字母序的升序输出可能是其悄悄关注的人，每行1个ID。如果其实并没有这样的人，则输出“Bing Mei You”。</p>
-<p>输入样例1：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> GAO3 Magi Zha1 Sen1 Quan FaMK LSum Eins FatM LLao</span><br><span class="line"><span class="number">8</span></span><br><span class="line">Magi <span class="number">50</span></span><br><span class="line">Pota <span class="number">30</span></span><br><span class="line">LLao <span class="number">3</span></span><br><span class="line">Ammy <span class="number">48</span></span><br><span class="line">Dave <span class="number">15</span></span><br><span class="line">GAO3 <span class="number">31</span></span><br><span class="line">Zoro <span class="number">1</span></span><br><span class="line">Cath <span class="number">60</span></span><br></pre></td></tr></table></figure></p>
-<p>输出样例1：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Ammy</span></span><br><span class="line"><span class="attribute">Cath</span></span><br><span class="line"><span class="attribute">Pota</span></span><br></pre></td></tr></table></figure></p>
-<p>输入样例2：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">11</span> GAO3 Magi Zha1 Sen1 Quan FaMK LSum Eins FatM LLao Pota</span><br><span class="line"><span class="number">7</span></span><br><span class="line">Magi <span class="number">50</span></span><br><span class="line">Pota <span class="number">30</span></span><br><span class="line">LLao <span class="number">48</span></span><br><span class="line">Ammy <span class="number">3</span></span><br><span class="line">Dave <span class="number">15</span></span><br><span class="line">GAO3 <span class="number">31</span></span><br><span class="line">Zoro <span class="number">29</span></span><br></pre></td></tr></table></figure></p>
-<p>输出样例2：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Bing </span>Mei You</span><br></pre></td></tr></table></figure></p>
-<p>题目比较简单，就是找出点赞数大于均值且名字不在关注列表里的人。刚开始我还是犯了错误：</p>
-<ol>
-<li><p>为了将列表按字典顺序排序，用排序来实现…后来发现用set存储时自动就排序了。然后不知道set存储字符串要用string更方便，用char*好像不行；</p>
+</blockquote>
+<p>输入样例1：  </p>
+<blockquote>
+<p>10 GAO3 Magi Zha1 Sen1 Quan FaMK LSum Eins FatM LLao<br>8<br>Magi 50<br>Pota 30<br>LLao 3<br>Ammy 48<br>Dave 15<br>GAO3 31<br>Zoro 1<br>Cath 60</p>
+</blockquote>
+<p>输出样例1：  </p>
+<blockquote>
+<p>Ammy<br>Cath<br>Pota</p>
+</blockquote>
+<p>输入样例2：  </p>
+<blockquote>
+<p>11 GAO3 Magi Zha1 Sen1 Quan FaMK LSum Eins FatM LLao Pota<br>7<br>Magi 50<br>Pota 30<br>LLao 48<br>Ammy 3<br>Dave 15<br>GAO3 31<br>Zoro 29</p>
+</blockquote>
+<p>输出样例2：  </p>
+<blockquote>
+<p>Bing Mei You  </p>
+</blockquote>
+<p>题目比较简单，就是找出点赞数大于均值且名字不在关注列表里的人，排个序就好了。总结下：</p>
+<ul>
+<li><p>用set存储元素时自动升序排序。set存储字符串用string；</p>
 </li>
-<li><p>存储数组一般开大些，’\0’会占位。存储4个字母数组不能只开char[4]，这里我找了很久的错。</p>
+<li><p>存储数组一般开大些，’\0’会占位。如存储4个字母数组不能只开char[4]。</p>
 </li>
-</ol>
-<p>以下为代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">  char name[10];</span><br><span class="line">  int num;</span><br><span class="line">&#125;zan;       //点赞信息</span><br><span class="line"></span><br><span class="line">zan a[10010];</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  set&lt;string&gt; men;      //存储关注列表</span><br><span class="line">  set&lt;string&gt; se;       //存储悄悄关注的人</span><br><span class="line">  set&lt;string&gt;::iterator it;</span><br><span class="line">  int n;</span><br><span class="line">  cin &gt;&gt;n;</span><br><span class="line">  for( int i=0; i&lt;n; i++ )&#123;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt;s;</span><br><span class="line">    men.insert(s);</span><br><span class="line">  &#125;</span><br><span class="line">  int m;</span><br><span class="line">  double sum = 0;</span><br><span class="line">  cin &gt;&gt;m;</span><br><span class="line">  for( int i=0; i&lt;m; i++ )&#123;</span><br><span class="line">    cin &gt;&gt;a[i].name &gt;&gt;a[i].num;</span><br><span class="line">    sum += a[i].num;</span><br><span class="line">  &#125;</span><br><span class="line">  sum /= (m*1.0);</span><br><span class="line"></span><br><span class="line">//寻找符合条件的人</span><br><span class="line">  for( int i=0; i&lt;m; i++ )&#123;</span><br><span class="line">    if( a[i].num &gt; sum )&#123;</span><br><span class="line">      if( men.count(a[i].name) == 0 )&#123;</span><br><span class="line">        se.insert(a[i].name);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  //结果列表空则输出没有，有则遍历输出</span><br><span class="line">  if( se.size() == 0 )&#123;</span><br><span class="line">    printf(&quot;Bing Mei You\n&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  else&#123;</span><br><span class="line">    for( it=se.begin(); it!=se.end(); it++ )&#123;</span><br><span class="line">      cout &lt;&lt;*it &lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>​</p>
+</ul>
+<p>以下为代码:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">  <span class="keyword">int</span> num;</span><br><span class="line">&#125;zan;       <span class="comment">//点赞信息</span></span><br><span class="line"></span><br><span class="line">zan a[<span class="number">10010</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; men;      <span class="comment">//存储关注列表</span></span><br><span class="line">  <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; se;       <span class="comment">//存储悄悄关注的人</span></span><br><span class="line">  <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;::iterator it;</span><br><span class="line">  <span class="keyword">int</span> n;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt;n;</span><br><span class="line">  <span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++ )&#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt;s;</span><br><span class="line">    men.insert(s);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> m;</span><br><span class="line">  <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt;m;</span><br><span class="line">  <span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++ )&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt;a[i].name &gt;&gt;a[i].num;</span><br><span class="line">    sum += a[i].num;</span><br><span class="line">  &#125;</span><br><span class="line">  sum /= (m*<span class="number">1.0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//寻找符合条件的人</span></span><br><span class="line">  <span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++ )&#123;</span><br><span class="line">    <span class="keyword">if</span>( a[i].num &gt; sum )&#123;</span><br><span class="line">      <span class="keyword">if</span>( men.count(a[i].name) == <span class="number">0</span> )&#123;</span><br><span class="line">        se.insert(a[i].name);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//结果列表空则输出没有，有则遍历输出</span></span><br><span class="line">  <span class="keyword">if</span>( se.size() == <span class="number">0</span> )&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Bing Mei You\n"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>( it=se.begin(); it!=se.end(); it++ )&#123;</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt;*it &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -580,6 +604,8 @@
             <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
             <a href="/tags/ACM/" rel="tag"><i class="fa fa-tag"></i> ACM</a>
+          
+            <a href="/tags/STL/" rel="tag"><i class="fa fa-tag"></i> STL</a>
           
             <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
           
@@ -653,8 +679,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -713,7 +748,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -759,6 +796,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -797,7 +850,7 @@
 
 
 
-  <div class="powered-by">版权由 <a class="theme-link" target="_blank" href="https://github.com/makersy/makersy.github.io">makersy</a> 所有   v3.7.1</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://github.com/makersy/makersy.github.io">makersy</a>   v3.7.1</div>
 
 
 <!--
