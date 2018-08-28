@@ -9,10 +9,10 @@
         <category>贪心</category>
       </categories>
       <tags>
+        <tag>算法</tag>
+        <tag>C/C++</tag>
         <tag>队列</tag>
         <tag>贪心</tag>
-        <tag>C/C++</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -24,8 +24,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>算法</tag>
+        <tag>C/C++</tag>
         <tag>数论</tag>
       </tags>
   </entry>
@@ -38,9 +38,9 @@
         <category>STL</category>
       </categories>
       <tags>
-        <tag>STL</tag>
-        <tag>C/C++</tag>
         <tag>算法</tag>
+        <tag>C/C++</tag>
+        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
