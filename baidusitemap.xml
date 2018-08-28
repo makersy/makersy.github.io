@@ -4,16 +4,43 @@
 
     
   <url>
-    <loc>https://makersy.top/ACM/%E6%95%B0%E8%AE%BA/(HDU)2018%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B-%E7%BD%91%E7%BB%9C%E9%80%89%E6%8B%94%E8%B5%9B-1004-Find-Integer/</loc>
-    <lastmod>2018-08-26T08:32:51.361Z</lastmod>
+    <loc>https://makersy.top/ACM/%E8%B4%AA%E5%BF%83/(HDU)2018CCPC-%E7%BD%91%E7%BB%9C%E8%B5%9B%201001%20Buy%20and%20Resell/</loc>
+    <lastmod>2018-08-28T08:21:18.500Z</lastmod>
     <data>
         <display>
-        <title>(HDU)2018中国大学生程序设计竞赛 - 网络选拔赛 1004 Find Integer</title>
+        <title>2018CCPC-网络赛 1001 Buy and Resell</title>
+        <pubTime>2018-08-27T14:19:25.000Z</pubTime>
+        
+        <tag>ACM</tag>
+         
+        <tag>队列</tag>
+         
+        <tag>贪心</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://makersy.top/categories/ACM/"/>
+          
+             
+              <breadCrumb title="贪心" url="https://makersy.top/categories/ACM/%E8%B4%AA%E5%BF%83/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://makersy.top/ACM/%E6%95%B0%E8%AE%BA/(HDU)2018CCPC-%E7%BD%91%E7%BB%9C%E8%B5%9B%201004%20Find%20Integer/</loc>
+    <lastmod>2018-08-27T14:17:00.582Z</lastmod>
+    <data>
+        <display>
+        <title>(HDU)2018CCPC - 网络赛 1004 Find Integer</title>
         <pubTime>2018-08-25T15:45:46.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>ACM</tag>
+         
+        <tag>算法</tag>
          
         <tag>数论</tag>
          
@@ -53,13 +80,13 @@
         <title>PAT L2-019. 悄悄关注</title>
         <pubTime>2018-08-24T07:24:53.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>ACM</tag>
          
         <tag>STL</tag>
          
         <tag>C/C++</tag>
+         
+        <tag>算法</tag>
          
          
            
