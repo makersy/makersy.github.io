@@ -1867,7 +1867,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4dc685;
+  background: #abff91;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2530,6 +2530,13 @@ ul.breadcrumb li+li:before {
 ul.breadcrumb li+li:last-child {
   font-weight: bold;
 }
+@media (max-width: 767px) {
+  .header-inner,
+  .container .main-inner,
+  .footer-inner {
+    width: auto;
+  }
+}
 embed {
   display: block;
   margin: 0px auto 25px auto;
@@ -2625,7 +2632,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("../images/background_yourname.png");
+  background: url("../images/your_name001.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
