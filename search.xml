@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java大数基本用法]]></title>
+    <url>%2F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%2FJava%2FJava%E5%A4%A7%E6%95%B0%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[最近学Java有接触到大数运算，感觉比用c++自己写个算法方便太多，在此记录下代码。java中用于操作大数的类主要有两个，一个是BigInteger，代表大整数类，用于对大整数进行操作；另一个是BigDecimal，代表高精度类，用于对比较大或精度比较高的浮点型数据进行操作。两个比较像。 基本用法1、新建一个值为123的大整数对象12BigInteger a=new BigInteger(“123”); //第一种，参数是字符串 BigInteger a=BigInteger.valueOf(123); //第二种，参数可以是int、long 2、大整数的四则运算1234a. add(b); //a,b均为BigInteger类型，加法 a.subtract(b); //减 法 a.divide(b); //除法 a.multiply(b); //乘法 3、大整数比较大小12a.equals(b); //如果a、b相等返回true否则返回false a.compareTo(b); //a小于b返回-1，等于返回0，大于返回1 4、常用方法1234a.mod(b); //求余 a.gcd(b); //求最大公约数 a.max(b); //求最大值 a.min(b); //求最小值 例子HDU1002 a+b 12345678910111213141516171819import java.util.*;import java.math.*;public class Main &#123; public static void main(String[] args) &#123; Scanner sc = new Scanner(System.in); int t = sc.nextInt(); BigInteger a, b, c; for( int i=1; i&lt;=t; i++ ) &#123; System.out.println("Case " + i + ":"); a = sc.nextBigInteger(); b = sc.nextBigInteger(); System.out.println(a + " + " + b + " = " + a.add(b)); if( i!=t ) &#123; System.out.println(); &#125; &#125; &#125; &#125;]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2018CCPC-网络赛 1001 Buy and Resell]]></title>
     <url>%2F%E7%AE%97%E6%B3%95%2F%E8%B4%AA%E5%BF%83%2F(HDU)2018CCPC-%E7%BD%91%E7%BB%9C%E8%B5%9B%201001%20Buy%20and%20Resell%2F</url>
     <content type="text"><![CDATA[Buy and Resell Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others)Total Submission(s): 2282 Accepted Submission(s): 359 Problem Description The Power Cube is used as a stash of Exotic Power. There are n cities numbered 1,2,…,n where allowed to trade it. The trading price of the Power Cube in the i-th city is ai dollars per cube. Noswal is a foxy businessman and wants to quietly make a fortune by buying and reselling Power Cubes. To avoid being discovered by the police, Noswal will go to the i-th city and choose exactly one of the following three options on the i-th day: spend ai dollars to buy a Power Cube resell a Power Cube and get ai dollars if he has at least one Power Cube do nothing Obviously, Noswal can own more than one Power Cubes at the same time. After going to the n cities, he will go back home and stay away from the cops. He wants to know the maximum profit he can earn. In the meanwhile, to lower the risks, he wants to minimize the times of trading (include buy and sell) to get the maximum profit. Noswal is a foxy and successful businessman so you can assume that he has infinity money at the beginning. Input There are multiple test cases. The first line of input contains a positive integer T (T≤250), indicating the number of test cases. For each test case:The first line has an integer n. (1≤n≤105)The second line has n integers a1,a2,…,an where ai means the trading price (buy or sell) of the Power Cube in the i-th city. (1≤ai≤109)It is guaranteed that the sum of all n is no more than 5×105. Output For each case, print one line with two integers —— the maximum profit and the minimum times of trading to get the maximum profit. Sample Input 341 2 10 959 5 9 10 522 1 Sample Output 16 45 20 0 题意有n个位置，每个位置有一个价格a[i]，按从1-n顺序经过每个位置，每个位置都可以进行三种操作之一且只能进行一次：1) 花a[i]元购买一个物品；2）卖掉一个手上的物品得到a[i]元； 3）什么也不做。假设金钱无限，初始没物品，身上可以装无限个物品，求走完所有城市后所能得到的最大利润和得到该最大利润所需的最少操作数。 题解低买高卖，此题可应用贪心的思想，每次遇到一个价格时，总是与前面的最低价进行“抵消”，这样利润最大。但是也许后面还有比这个价格更高的，所以需要“反悔”的机会，把错误时机卖出的损失挽回。因此优先队列（价格低标记值大先出队）代表已有物品，每到一个城市，先判断此地价格是不是比队列的最低价格高，是的话就可以将最低价格的物品卖掉了，再把差值加到利润上。然后最低价弹出，在队列里插入此地价格两个，分别以1和0标记（已经卖过一次，尚未卖过）。如此循环，假如后面有更高价想反悔，就把标记为1的错误卖出值弹出，队中标记为0的代表这个值现在是未被使用，可参与买卖。举个例子：样例中有“1 2 10 9”这个情况，首先花1元买物品，遇到2时我会把1给卖出，队里插入“2 1”“2 0”，利润为-1+2=1。后来又遇到10，2就属于贱卖当然不行，此时队里有两个2，让标记为1的出队，剩下的2的标记为0，代表没有被使用过，插入“10 1”“10 0”，此时利润值为1-2+10=9（跟1买10卖的利润是一样的）。下一个遇到9，此时队中最小为2，消之，利润计算为9-2+9=16。至于操作次数计算就简单了，只需要每次在标记为0的价格出队时总次数+2即可。以下为代码：12345678910111213141516171819202122232425262728293031323334353637383940#include&lt;bits/stdc++.h&gt;using namespace std;typedef long long LL;struct node&#123; int v, s; //v--价格，s--状态 node(int a, int b):v(a), s(b)&#123;&#125; //重载&lt;运算符，使优先队列让v小的先出队，v相同则s大的先出队 //优先队列默认把结构体按从大到小排序，重载&lt;运算符使其按照自定义顺序排序 bool operator&lt;(const node &amp;a) const&#123; if( v==a.v ) return s&lt;a.s; return v&gt;a.v; &#125;&#125;;int main() &#123; int t; while( t-- )&#123; int n; LL profit=0, cnt=0; scanf("%d", &amp;n); priority_queue&lt;node&gt; que; for( int i=0; i&lt;n; i++ )&#123; int c; scanf("%d", &amp;c); if( !que.empty() &amp;&amp; que.top().v&lt;c )&#123; node tmp=que.top(); profit=profit-tmp.v+c; if( tmp.s==0 ) cnt+=2; //当前最小值之前没有买过，次数加2(以最小值买，以最大值卖) que.pop(); que.push(node(c, 1)); que.push(node(c, 0)); &#125; else&#123; que.push(node(c, 0)); &#125; &#125; printf("%lld %lld\n", profit, cnt); &#125; return 0;&#125;]]></content>
@@ -9,10 +21,10 @@
         <category>贪心</category>
       </categories>
       <tags>
+        <tag>C/C++</tag>
         <tag>算法</tag>
         <tag>队列</tag>
         <tag>贪心</tag>
-        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -24,8 +36,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>C/C++</tag>
+        <tag>算法</tag>
         <tag>数论</tag>
       </tags>
   </entry>
@@ -38,8 +50,8 @@
         <category>STL</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>STL</tag>
+        <tag>C/C++</tag>
         <tag>数据结构</tag>
       </tags>
   </entry>
