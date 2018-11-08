@@ -396,6 +396,227 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://makersy.top/python/爬虫笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杨昊霖">
+      <meta itemprop="description" content="Keep move.">
+      <meta itemprop="image" content="/images/aeolian.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Makersy的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/python/爬虫笔记/" itemprop="url">
+                  爬虫笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-06 23:34:48" itemprop="dateCreated datePublished" datetime="2018-11-06T23:34:48+08:00">2018-11-06</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>###判断请求是否成功<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> response.status_code==<span class="number">200</span></span><br></pre></td></tr></table></figure></p>
+<p>###字符串格式化的一种方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"你&#123;&#125;好"</span>.format(<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用代理ip"><a href="#使用代理ip" class="headerlink" title="使用代理ip"></a>使用代理ip</h3><ul>
+<li>准备一堆ip地址，组成ip池，随机选择一个ip来使用</li>
+<li><p>如何随机选择代理ip</p>
+<ul>
+<li>{“ip”:ip,”times”:0}</li>
+<li>[{},{},{},{},{}],对这个ip的列表进行排序，按照使用次数进行排序</li>
+<li>选择使用次数较少的10个ip，从中随机选择一个</li>
+</ul>
+</li>
+<li><p>检查ip的可用性  </p>
+<ul>
+<li>可以使用requests添加超时参数，判断ip地址的质量  </li>
+<li>在线代理ip质量检测网站</li>
+</ul>
+</li>
+</ul>
+<h3 id="携带cookie请求"><a href="#携带cookie请求" class="headerlink" title="携带cookie请求"></a>携带cookie请求</h3><ul>
+<li>尽量不使用cookie</li>
+<li>携带一堆cookie进行请求，把cookie组成cookie池</li>
+</ul>
+<p>###请求登陆之后的网站的思路</p>
+<ul>
+<li>实例化session</li>
+<li>先使用session发送请求，登陆对网站，把cookie保存在session中</li>
+<li>再使用session请求登录之后才能访问的网站，sesssion能够自动携带登陆成功时保存在其中的cookie，进行请求</li>
+</ul>
+<h3 id="不发送post请求，使用cookie获取登陆后的页面"><a href="#不发送post请求，使用cookie获取登陆后的页面" class="headerlink" title="不发送post请求，使用cookie获取登陆后的页面"></a>不发送post请求，使用cookie获取登陆后的页面</h3><ul>
+<li>cookie过期时间很长的网站</li>
+<li>在cookie过期之前能够拿到所有的数据，比较麻烦</li>
+<li>配合其他程序一起使用，其他程序专门其获取cookie，当前程序专门请求页面</li>
+</ul>
+<h3 id="字典推导式，列表推导式"><a href="#字典推导式，列表推导式" class="headerlink" title="字典推导式，列表推导式"></a>字典推导式，列表推导式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cookies = <span class="string">"uuid_tt_dd=10_18697420810-1541514998525-406120; dc_session_id=10_1541514998525.130001; c_adb=1; smidV2=2018110622540004c9a404e4b4418224a1bc1f0afbaf24004db7a451c1dc9c0; UN=makersy; TY_SESSION_ID=bcb2fab5-1594-432f-b08b-77ff1c25478c; SESSION=04780891-f506-4bae-9eb9-7bee9b0f01b6; UserName=makersy; UserInfo=TY72nyXcSQ4kxcpYdP3noqwQsV904wqUfUrjssi1EYiqf77of1nXIX31igaPjkMfWt%2FBg37Ty5yCAFxluyxuwvK%2BjTb8WKRG2o8PpCGW7eCE5ImRX5bUUNkAvcYMhTjY; UserNick=makersy; AU=7FA; BT=1541516799322; UserToken=TY72nyXcSQ4kxcpYdP3noqwQsV904wqUfUrjssi1EYiqf77of1nXIX31igaPjkMfWt%2FBg37Ty5yCAFxluyxuwvK%2BjTb8WKRG2o8PpCGW7eAvjKefqLie1zAAltRYdzP1Sk%2Bfm7yuJ%2FP%2Fbsd6wSQVGMnSmTWc8bbv2HgJOkqFDhc%3D; ARK_ID=JSc5d36a4d0c44c361b2667ed6147b5607c5d3; dc_tos=phs2bi"</span></span><br><span class="line">cookies = &#123;i.split(<span class="string">"="</span>)[<span class="number">0</span>]:i.split(<span class="string">"="</span>)[<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> cookies.split(<span class="string">"; "</span>)&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获取登陆后的页面的三种方式"><a href="#获取登陆后的页面的三种方式" class="headerlink" title="获取登陆后的页面的三种方式"></a>获取登陆后的页面的三种方式</h3><ul>
+<li>实例化session，使用session发送post请求，在使用他获取登陆后的页面</li>
+<li>headers中添加cookie键，值为cookie字符串</li>
+<li>在请求方法中添加cookie参数，接受字典形式的cookie，字典形式的cookie中的键是cookie的name对应的值，值是cookie的value对应的值</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://makersy.top/编程语言/Java/java连接高版本mysql数据库-8-0-的坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1759,7 +1980,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1788,7 +2009,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1821,7 +2044,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2433,6 +2660,8 @@
 
   
   
+    
+      
     
       
     
