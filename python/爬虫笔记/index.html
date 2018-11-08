@@ -163,18 +163,18 @@
 
 
 
-  <meta name="description" content="###判断请求是否成功1assert response.status_code==200 ###字符串格式化的一种方式1&quot;你&amp;#123;&amp;#125;好&quot;.format(1) 使用代理ip 准备一堆ip地址，组成ip池，随机选择一个ip来使用 如何随机选择代理ip  {“ip”:ip,”times”:0} [{},{},{},{},{}],对这个ip的列表进行排序，按照使用次数进行排序 选择使用次">
+  <meta name="description" content="python爬虫笔记">
 <meta name="keywords" content="python,爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="爬虫笔记">
 <meta property="og:url" content="https://makersy.top/python/爬虫笔记/index.html">
 <meta property="og:site_name" content="Makersy的博客">
-<meta property="og:description" content="###判断请求是否成功1assert response.status_code==200 ###字符串格式化的一种方式1&quot;你&amp;#123;&amp;#125;好&quot;.format(1) 使用代理ip 准备一堆ip地址，组成ip池，随机选择一个ip来使用 如何随机选择代理ip  {“ip”:ip,”times”:0} [{},{},{},{},{}],对这个ip的列表进行排序，按照使用次数进行排序 选择使用次">
+<meta property="og:description" content="python爬虫笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-06T15:36:04.498Z">
+<meta property="og:updated_time" content="2018-11-08T14:02:02.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="爬虫笔记">
-<meta name="twitter:description" content="###判断请求是否成功1assert response.status_code==200 ###字符串格式化的一种方式1&quot;你&amp;#123;&amp;#125;好&quot;.format(1) 使用代理ip 准备一堆ip地址，组成ip池，随机选择一个ip来使用 如何随机选择代理ip  {“ip”:ip,”times”:0} [{},{},{},{},{}],对这个ip的列表进行排序，按照使用次数进行排序 选择使用次">
+<meta name="twitter:description" content="python爬虫笔记">
 
 
 
@@ -529,9 +529,9 @@
       
 
       
-        <a id="more"></a>
-<p>###判断请求是否成功<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> response.status_code==<span class="number">200</span></span><br></pre></td></tr></table></figure></p>
-<p>###字符串格式化的一种方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"你&#123;&#125;好"</span>.format(<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+        <p>python爬虫笔记<br><a id="more"></a></p>
+<h3 id="判断请求是否成功"><a href="#判断请求是否成功" class="headerlink" title="判断请求是否成功"></a>判断请求是否成功</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> response.status_code==<span class="number">200</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串格式化的一种方式"><a href="#字符串格式化的一种方式" class="headerlink" title="字符串格式化的一种方式"></a>字符串格式化的一种方式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"你&#123;&#125;好"</span>.format(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="使用代理ip"><a href="#使用代理ip" class="headerlink" title="使用代理ip"></a>使用代理ip</h3><ul>
 <li>准备一堆ip地址，组成ip池，随机选择一个ip来使用</li>
 <li><p>如何随机选择代理ip</p>
@@ -552,8 +552,7 @@
 <li>尽量不使用cookie</li>
 <li>携带一堆cookie进行请求，把cookie组成cookie池</li>
 </ul>
-<p>###请求登陆之后的网站的思路</p>
-<ul>
+<h3 id="请求登陆之后的网站的思路"><a href="#请求登陆之后的网站的思路" class="headerlink" title="请求登陆之后的网站的思路"></a>请求登陆之后的网站的思路</h3><ul>
 <li>实例化session</li>
 <li>先使用session发送请求，登陆对网站，把cookie保存在session中</li>
 <li>再使用session请求登录之后才能访问的网站，sesssion能够自动携带登陆成功时保存在其中的cookie，进行请求</li>
@@ -811,7 +810,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用代理ip"><span class="nav-number">1.</span> <span class="nav-text">使用代理ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#携带cookie请求"><span class="nav-number">2.</span> <span class="nav-text">携带cookie请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不发送post请求，使用cookie获取登陆后的页面"><span class="nav-number">3.</span> <span class="nav-text">不发送post请求，使用cookie获取登陆后的页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典推导式，列表推导式"><span class="nav-number">4.</span> <span class="nav-text">字典推导式，列表推导式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取登陆后的页面的三种方式"><span class="nav-number">5.</span> <span class="nav-text">获取登陆后的页面的三种方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断请求是否成功"><span class="nav-number">1.</span> <span class="nav-text">判断请求是否成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串格式化的一种方式"><span class="nav-number">2.</span> <span class="nav-text">字符串格式化的一种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用代理ip"><span class="nav-number">3.</span> <span class="nav-text">使用代理ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#携带cookie请求"><span class="nav-number">4.</span> <span class="nav-text">携带cookie请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求登陆之后的网站的思路"><span class="nav-number">5.</span> <span class="nav-text">请求登陆之后的网站的思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不发送post请求，使用cookie获取登陆后的页面"><span class="nav-number">6.</span> <span class="nav-text">不发送post请求，使用cookie获取登陆后的页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典推导式，列表推导式"><span class="nav-number">7.</span> <span class="nav-text">字典推导式，列表推导式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取登陆后的页面的三种方式"><span class="nav-number">8.</span> <span class="nav-text">获取登陆后的页面的三种方式</span></a></li></ol></div>
             
 
           </div>
