@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>https://makersy.top/%E5%89%8D%E7%AB%AF/HTML/HTML%E5%B0%8F%E8%AE%B0/</loc>
+    <lastmod>2018-11-18T13:49:06.206Z</lastmod>
+    <data>
+        <display>
+        <title>HTML小记</title>
+        <pubTime>2018-11-18T10:55:59.000Z</pubTime>
+        
+        <tag>HTML</tag>
+         
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="https://makersy.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+             
+              <breadCrumb title="HTML" url="https://makersy.top/categories/%E5%89%8D%E7%AB%AF/HTML/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://makersy.top/python/%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2018-11-08T14:02:02.390Z</lastmod>
     <data>
@@ -160,11 +185,11 @@
         
         <tag>算法</tag>
          
+        <tag>C/C++</tag>
+         
         <tag>队列</tag>
          
         <tag>贪心</tag>
-         
-        <tag>C/C++</tag>
          
          
            
