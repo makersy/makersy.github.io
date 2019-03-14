@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[jQuery和ajax使用.md]]></title>
+    <url>%2Funcategorized%2FjQuery%E5%92%8Cajax%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[JSP FileUpload实现文件上传]]></title>
     <url>%2FJava%2FWeb%2FJSP-FileUpload%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%2F</url>
     <content type="text"><![CDATA[文件上传的条件 表单必须是post提交方式 表单中必须有文件上传项，文件上传项必须有name属性和值 表单的enctype属性必须设置为multipart/form-data 文件上传基本操作数据接收：通过使用fileupload jar包的Common-FileUpload组件完成文件上传基本步骤： 创建一个 磁盘文件项工厂 的对象DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory(); 创建一个核心解析类ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory ); 解析request请求 —— parseRequest，返回一个List集合，List集合中存放的是FileItem对象（每一个表单项都是一个FileItem对象）List&lt;FileItem&gt; list = servletFileUpload.parseRequest(request); 遍历集合，获得每个FileItem，判断是表单项还是文件上传项fileItem.isFormField(): 返回是普通的文件表单项还是文件上传项fileItem.getFieldName(): 获得表单项的name属性值fileItem.getString(“UTF-8”): 获取表单的文本值，可设置UTF-8解决中文乱码 获得文件名：String filename = fileItem.getName(); 通过自定义工具类获得唯一文件名：String uuidfilename = UploadUtils.getUUIDFileName(filename);注：UploadUtils类是自定义工具类，具体实现是： 123456789101112131415public class UploadUtils &#123; /* * 生成唯一文件名 * */ public static String getUUIDFileName(String fileName) &#123; int idx = fileName.lastIndexOf("."); String extention = fileName.substring(idx);//扩展名 String uuidFileName = UUID.randomUUID().toString().replace("-", "")+extention; return uuidFileName; &#125; public static void main(String[] args) &#123; System.out.println(getUUIDFileName("1.jpg")); &#125;&#125; 输入流获得文件上传的数据：InputStream is = fileItem.getInputStream(); 得到文件要上传的路径url = this.getServletContext().getRealPath(&quot;/upload&quot;)+&quot;//&quot;+uuidfilename; 输入流对接输出流123456789OutputStream os = new FileOutStream(url);//输出流目标为urlint len = 0;byte[] b = new byte[1024];while((len=is.read(b)) != -1)&#123;//读取输入流到b中os.write(b,0,len);//将b写入输出流中&#125;is.close();//关闭输入流os.close();//关闭输出流&#125;]]></content>
@@ -91,8 +96,8 @@
       <tags>
         <tag>Java</tag>
         <tag>LeetCode</tag>
-        <tag>数据结构</tag>
         <tag>二叉树</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -106,8 +111,8 @@
       <tags>
         <tag>Java</tag>
         <tag>LeetCode</tag>
-        <tag>数据结构</tag>
         <tag>二叉树</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -148,11 +153,6 @@
         <tag>Java</tag>
         <tag>LeetCode</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[唔...]]></title>
-    <url>%2Funcategorized%2F%E5%94%94%2F</url>
-    <content type="text"><![CDATA[zzz大学是什么样的呢？对我来说，好像就是大一时浑浑噩噩，成绩不上不下；大二时认真起来，成绩到了前几，编程好像也貌似很厉害，同学遇到的问题我都可以解决；到现在，大三了，突然发现：我好像什么都做了，又什么都没做，还学了一堆没用的知识。很迷惑。 …照这么看，之前的两年好像就浪费了。 也不能说全浪费了，至少还在课堂上学到了C预言，数据库，数据结构；课余也学了java，python，算法，还参加过一年多的acm，会了些算法。但总是感觉学的很浅，要找工作怕是有点难。 到了现在，大三上学期，面临下个暑假要进行的实习和大四开学就要进行的找工作，有点着急。周围的同学一个接一个地报培训班，也曾想过报一个，但是种种原因报不了。 算了吧。这个家没有可以和别人拼的东西。能拼的只有我自己。 但那又如何呢？ 就算面对这么多去上培训班的人，我还是可以赢。我不信自学的就一定比培训班的差，这主要看人；我不信一个连独立解决问题的能力都没有的人，进了培训班就可以改头换面，剑指offer；还是那句话，这主要看人。我相信我会做的很好。 我心里一直孤立无援。当生活难过的时候，我会看一看天上的月亮。但哪怕所有人都不信我，我还是相信我自己。我一定会去BAT的，就算去不了，那也一定是我不想去。 为了什么呢？为了以后，如果有后代，可以对ta说，喜欢做什么就做什么，家庭永远有支持你的能力。而不是每天都抱怨生活的艰辛，家庭的难处，对他说：你还是先挣钱要紧。 该睡觉了。明天还是充满希望的一天。over]]></content>
   </entry>
   <entry>
     <title><![CDATA[CSS小记]]></title>
