@@ -1867,7 +1867,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c21467;
+  background: #5bf4b9;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2630,54 +2630,4 @@ embed {
 }
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
-}
-body {
-  background: url("../images/your_name001.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 50%;
-  background-size: cover;
-}
-.main-inner {
-  margin-top: 0px;
-  background: #fff;
-  opacity: 0.8;
-}
-.content {
-  border-radius: 30px;
-  margin-top: 0px;
-  opacity: 1;
-}
-@media (min-width: 992px) {
-  .content {
-    padding: 40px;
-  }
-}
-@media (max-width: 767px) {
-  .content {
-    padding: 5px;
-  }
-}
-.menu {
-  opacity: 0.7;
-  background: #fff;
-}
-code {
-  color: #ff7600;
-  background: #fbf7f8;
-  margin: 2px;
-}
-.highlight,
-pre {
-  margin: 5px 0;
-  padding: 5px;
-  border-radius: 3px;
-}
-.highlight,
-code,
-pre {
-  border: 1px solid #d6d6d6;
-}
-.sidebar {
-  opacity: 1;
 }

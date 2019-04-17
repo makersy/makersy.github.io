@@ -31,7 +31,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -116,13 +116,13 @@
 <link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/java_coffee_cup_logo_copyrighted_128px.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/java_coffee_cup_logo_copyrighted_32px.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/java_coffee_cup_logo_copyrighted_16px.ico?v=6.4.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
@@ -172,7 +172,7 @@
 <meta property="og:description" content="1、TCP和UDP的区别（1）TCP面向连接；UDP面向无连接（2）TCP保证数据正确性，UDP可能丢包，TCP保证数据顺序，UDP不保证；（3）TCP传输速度慢；UDP速度快（4）每一条TCP连接只能是点到点的；UDP支持一对一，一对多，多对一和多对多的交互通信（5）TCP对系统资源要求较多，UDP对系统资源要求较少。（6）TCP的逻辑通信信道是全双工的可靠信道，UDP是不可靠信道。（7）UDP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://images0.cnblogs.com/i/273314/201403/092149483783253.png">
-<meta property="og:updated_time" content="2019-03-16T08:58:55.862Z">
+<meta property="og:updated_time" content="2019-03-16T13:51:34.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于TCP的学习总结">
 <meta name="twitter:description" content="1、TCP和UDP的区别（1）TCP面向连接；UDP面向无连接（2）TCP保证数据正确性，UDP可能丢包，TCP保证数据顺序，UDP不保证；（3）TCP传输速度慢；UDP速度快（4）每一条TCP连接只能是点到点的；UDP支持一对一，一对多，多对一和多对多的交互通信（5）TCP对系统资源要求较多，UDP对系统资源要求较少。（6）TCP的逻辑通信信道是全双工的可靠信道，UDP是不可靠信道。（7）UDP">
@@ -404,7 +404,7 @@
     <link itemprop="mainEntityOfPage" href="https://makersy.top/网络/关于TCP的学习总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="杨昊霖">
+      <meta itemprop="name" content="HaoLin Yang">
       <meta itemprop="description" content="Keep move.">
       <meta itemprop="image" content="/images/zuozhu.jpg">
     </span>
@@ -534,18 +534,14 @@
         <h3 id="1、TCP和UDP的区别"><a href="#1、TCP和UDP的区别" class="headerlink" title="1、TCP和UDP的区别"></a>1、TCP和UDP的区别</h3><p>（1）TCP面向连接；UDP面向无连接<br>（2）TCP保证数据正确性，UDP可能丢包，TCP保证数据顺序，UDP不保证；<br>（3）TCP传输速度慢；UDP速度快<br>（4）每一条TCP连接只能是点到点的；UDP支持一对一，一对多，多对一和多对多的交互通信<br>（5）TCP对系统资源要求较多，UDP对系统资源要求较少。<br>（6）TCP的逻辑通信信道是全双工的可靠信道，UDP是不可靠信道。<br>（7）UDP没有拥塞机制，因此网络出现拥塞不会使源主机的发送速率降低。<br>（8）TCP首部开销20字节;UDP的首部开销小，只有8个字节。<br><a id="more"></a></p>
 <ul>
 <li><strong>什么时候应该使用TCP</strong>： 当对网络通讯质量有要求的时候，比如：整个数据要准确无误的传递给对方，这往往用于一些要求可靠的应用，比如HTTP、HTTPS、FTP等传输文件的协议，POP、SMTP等邮件传输的协议。 在日常生活中，常见使用TCP协议的应用如下： <strong>浏览器，用的HTTP； FlashFXP，用的FTP； Outlook，用的POP、SMTP； Putty，用的Telnet、SSH； QQ文件传输</strong> …</li>
-<li><strong>什么时候应该使用UDP</strong>： 当对网络通讯质量要求不高的时候，要求网络通讯速度能尽量的快，这时就可以使用UDP。 比如，日常生活中，常见使用UDP协议的应用如下： QQ语音 QQ视频…<br>有些应用场景对可靠性要求不高会用到UDP，比如长视频，要求速率<h3 id="2、TCP三次握手四次挥手"><a href="#2、TCP三次握手四次挥手" class="headerlink" title="2、TCP三次握手四次挥手"></a>2、TCP三次握手四次挥手</h3><h4 id="2-1-建立连接协议（三次握手）"><a href="#2-1-建立连接协议（三次握手）" class="headerlink" title="2.1 建立连接协议（三次握手）"></a>2.1 建立连接协议（三次握手）</h4>（1）客户端发送一个带SYN标志位、seq的TCP报文到server。这是三次握手过程中的报文1。此时client进入<em>SYN_SEND</em>状态。<br>（2） server端回应client的报文，是三次握手中的第2个报文。这个报文同时带ACK（确认字符）标志、SYN标志、ack（=收到来自客户端的seq+1）、seq（server自己的）。因此它表示对刚才client SYN报文的回应。此时server进入<em>SYN_RECV</em>状态。<br>（3） 客户必须再次回应服务段一个包括ACK、ack（=来自server的seq+1）、seq（第一次握手的seq+1）的报文，这是报文段3。此时双方进入<em>ESTABLISHED</em>状态。</li>
+<li><strong>什么时候应该使用UDP</strong>： 当对网络通讯质量要求不高的时候，要求网络通讯速度能尽量的快，这时就可以使用UDP。 比如，日常生活中，常见使用UDP协议的应用如下： QQ语音 QQ视频…<br>有些应用场景对可靠性要求不高会用到UDP，比如长视频，要求速率  </li>
 </ul>
-<p>名词解释：</p>
+<h3 id="2、TCP三次握手四次挥手"><a href="#2、TCP三次握手四次挥手" class="headerlink" title="2、TCP三次握手四次挥手"></a>2、TCP三次握手四次挥手</h3><h4 id="2-1-建立连接协议（三次握手）"><a href="#2-1-建立连接协议（三次握手）" class="headerlink" title="2.1 建立连接协议（三次握手）"></a>2.1 建立连接协议（三次握手）</h4><p>（1）客户端发送一个带SYN标志位、seq的TCP报文到server。这是三次握手过程中的报文1。此时client进入<em>SYN_SEND</em>状态。<br>（2） server端回应client的报文，是三次握手中的第2个报文。这个报文同时带ACK（确认字符）标志、SYN标志、ack（=收到来自客户端的seq+1）、seq（server自己的）。因此它表示对刚才client SYN报文的回应。此时server进入<em>SYN_RECV</em>状态。<br>（3） 客户必须再次回应服务段一个包括ACK、ack（=来自server的seq+1）、seq（第一次握手的seq+1）的报文，这是报文段3。此时双方进入<em>ESTABLISHED</em>状态。<br>名词解释：</p>
 <ul>
-<li><p>序列号seq：占4个字节，用来标记数据段的顺序，TCP把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生；给字节编上序号后，就给每一个报文段指派一个序号；序列号seq就是这个报文段中的<strong>第一个</strong>字节的数据编号。</p>
-</li>
-<li><p>确认号ack：占4个字节，期待收到对方下一个报文段的第一个数据字节的序号；序列号表示报文段携带数据的第一个字节的编号；而确认号指的是期望接收到下一个字节的编号；因此当前报文段<strong>最后</strong>一个字节的编号+1即为确认号。</p>
-</li>
-<li><p>SYN：属于一个标志位，为1时代表这是一个连接请求（当ACK=0）或连接接受响应（当ACK=1）报文；SYN这个标志位只有在TCP建立连接时才会被置1，握手完成后SYN标志位被置0。</p>
-</li>
-<li><p>ACK：只在响应中出现。占1位，仅当ACK=1时，ack才有效。ACK=0时，ack无效。</p>
-</li>
+<li>序列号seq：占4个字节，用来标记数据段的顺序，TCP把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生；给字节编上序号后，就给每一个报文段指派一个序号；序列号seq就是这个报文段中的<strong>第一个</strong>字节的数据编号。  </li>
+<li>确认号ack：占4个字节，期待收到对方下一个报文段的第一个数据字节的序号；序列号表示报文段携带数据的第一个字节的编号；而确认号指的是期望接收到下一个字节的编号；因此当前报文段<strong>最后</strong>一个字节的编号+1即为确认号。  </li>
+<li>SYN：属于一个标志位，为1时代表这是一个连接请求（当ACK=0）或连接接受响应（当ACK=1）报文；SYN这个标志位只有在TCP建立连接时才会被置1，握手完成后SYN标志位被置0。  </li>
+<li>ACK：只在响应中出现。占1位，仅当ACK=1时，ack才有效。ACK=0时，ack无效。  </li>
 </ul>
 <h4 id="2-2-连接终止协议（四次挥手）"><a href="#2-2-连接终止协议（四次挥手）" class="headerlink" title="2.2 连接终止协议（四次挥手）"></a>2.2 连接终止协议（四次挥手）</h4><p>因为TCP连接是全双工的，因此每一个方向都必须单独进行关闭。这原则是当一方完毕它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个FIN仅仅意味着这一方向上没有数据流动。一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将运行主动关闭。而还有一方运行被动关闭。<br>流程：<br>　（1） 主机1发送FIN和seq。请求关闭主机1到主机2的数据传送（报文段4）。此时状态变化： 1：FIN_WAIT1<br>　（2） 主机2收到这个FIN。它发回一个ACK、ack（收到的seq加1）、seq（报文段5）。<br>这一步代表主机2同意关闭连接，但连接并没有关闭，因为主机2可能还有数据没发完，为此需要等待。此时状态变化：2：CLOSE_WAIT | 1：FIN_WAIT2<br>　（3） 主机2发完剩余数据，准备关闭与主机1的连接，并发送一个FIN给主机1（报文段6）。进入LAST-ACK（最后确认）状态。如果没收到主机1的回复，会进行超时重传的。<br>　（4） 主机1收到主机2回复，知道它的数据发送完了。于是发回ACK报文确认收到，告诉主机2你可以关了。并将ack设置为收到序号加1（报文段7）。这样一来主机2收到后就安心关闭连接了。此时状态变化： 1：TIME_WAIT | 2：CLOSED。<br>　这样四次挥手就完成了。不过别忘了，主机1还在TIME_WAIT状态。他需要等待2MSL的时间，如果在这段时间又收到来自主机2的FIN+ACK报文（报文段6），就会再发送ACK报文回去，直至过了2MSL且再无回音，就关掉。所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指任何IP数据报能够在因特网上存活的最长时间，2MSL就是一个发送和一个回复所需的最大时间。<br><img src="https://images0.cnblogs.com/i/273314/201403/092149483783253.png" alt=""><br>　<br>名词解释：</p>
 <ul>
@@ -662,9 +658,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/zuozhu.jpg"
-                alt="杨昊霖" />
+                alt="HaoLin Yang" />
             
-              <p class="site-author-name" itemprop="name">杨昊霖</p>
+              <p class="site-author-name" itemprop="name">HaoLin Yang</p>
               <p class="site-description motion-element" itemprop="description">Keep move.</p>
           </div>
 
@@ -675,7 +671,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -722,7 +718,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -787,7 +785,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -807,6 +807,11 @@
               
                 <span class="links-of-author-item">
                   <a href="1352605699@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://blog.csdn.net/makersy" target="_blank" title="CSDN"><i class="fa fa-fw fa-tag"></i>CSDN</a>
                   
                 </span>
               
@@ -873,11 +878,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">杨昊霖</span>
+  <span class="author" itemprop="copyrightHolder">HaoLin Yang</span>
 
   
 
@@ -983,9 +988,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -1009,16 +1011,6 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
   
 
   
