@@ -163,16 +163,16 @@
 
 
 
-  <meta name="description" content="Keep move.">
+  <meta name="description" content="人生如逆旅，我亦是行人。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Makersy的博客">
 <meta property="og:url" content="https://makersy.top/archives/2018/09/index.html">
 <meta property="og:site_name" content="Makersy的博客">
-<meta property="og:description" content="Keep move.">
+<meta property="og:description" content="人生如逆旅，我亦是行人。">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Makersy的博客">
-<meta name="twitter:description" content="Keep move.">
+<meta name="twitter:description" content="人生如逆旅，我亦是行人。">
 
 
 
@@ -582,7 +582,7 @@
                 alt="HaoLin Yang" />
             
               <p class="site-author-name" itemprop="name">HaoLin Yang</p>
-              <p class="site-description motion-element" itemprop="description">Keep move.</p>
+              <p class="site-description motion-element" itemprop="description">人生如逆旅，我亦是行人。</p>
           </div>
 
           
@@ -957,6 +957,31 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'GdLCBilfAxuF0AVkSlLiotzv-gzGzoHsz',
+        appKey: 'kNS0tGlr248PRDUL2YFiBHeF',
+        placeholder: '请举手发言~',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
 
 
 
