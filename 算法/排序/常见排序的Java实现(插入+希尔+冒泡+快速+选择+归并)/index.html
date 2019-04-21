@@ -168,15 +168,15 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见七大排序的Java实现">
 <meta property="og:url" content="https://makersy.top/算法/排序/常见排序的Java实现(插入+希尔+冒泡+快速+选择+归并)/index.html">
-<meta property="og:site_name" content="Makersy的博客">
+<meta property="og:site_name" content="Makersy&#39;s Blog">
 <meta property="og:description" content="之前学习C语言时学过各类基础排序，现在用Java来再回顾一遍。这一篇主要是写一下规范的代码。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190314224810706.jpg">
-<meta property="og:updated_time" content="2019-04-17T13:13:59.447Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190403193941184.png">
+<meta property="og:updated_time" content="2019-04-21T14:15:26.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见七大排序的Java实现">
 <meta name="twitter:description" content="之前学习C语言时学过各类基础排序，现在用Java来再回顾一遍。这一篇主要是写一下规范的代码。">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190314224810706.jpg">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190403193941184.png">
 
 
 
@@ -191,7 +191,7 @@
   };
 </script>
 
-  <title>常见七大排序的Java实现 | Makersy的博客</title>
+  <title>常见七大排序的Java实现 | Makersy's Blog</title>
   
 
 
@@ -247,7 +247,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Makersy的博客</span>
+        <span class="site-title">Makersy's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -408,7 +408,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Makersy的博客">
+      <meta itemprop="name" content="Makersy's Blog">
     </span>
 
     
@@ -548,7 +548,7 @@
       
         <p>之前学习C语言时学过各类基础排序，现在用Java来再回顾一遍。这一篇主要是写一下规范的代码。</p>
 <a id="more"></a>
-<h4 id="一、排序相关的基本概念"><a href="#一、排序相关的基本概念" class="headerlink" title="一、排序相关的基本概念"></a>一、排序相关的基本概念</h4><p>  排序其实是一个相当大的概念，主要分为两类：内部排序和外部排序。而我们通常所说的各种排序算法其实指的是内部排序算法。内部排序是基于内存的，整个排序过程都是在内存中完成的，而外部排序指的是由于数据量太大，内存不能完全容纳，排序的时候需要借助外存才能完成（常常是某一部分已经计算过的数据移出内存让另一部分未被计算的数据进入内存）。而本篇文章将主要介绍内部排序中的几种常用排序算法：<br><img src="https://img-blog.csdnimg.cn/20190314224810706.jpg" alt="在这里插入图片描述"><br>为了测试方便，我定义了生成随机数组的Const类和打印输出的print函数。Const类如下：</p>
+<h4 id="一、排序相关的基本概念"><a href="#一、排序相关的基本概念" class="headerlink" title="一、排序相关的基本概念"></a>一、排序相关的基本概念</h4><p>  排序其实是一个相当大的概念，主要分为两类：内部排序和外部排序。而我们通常所说的各种排序算法其实指的是内部排序算法。内部排序是基于内存的，整个排序过程都是在内存中完成的，而外部排序指的是由于数据量太大，内存不能完全容纳，排序的时候需要借助外存才能完成（常常是某一部分已经计算过的数据移出内存让另一部分未被计算的数据进入内存）。而本篇文章将主要介绍内部排序中的几种常用排序算法：<br><img src="https://img-blog.csdnimg.cn/20190403193941184.png" alt="在这里插入图片描述"><br>为了测试方便，我定义了生成随机数组的Const类和打印输出的print函数。Const类如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> a[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Const</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i&lt;a.length; i++ )&#123;</span><br><span class="line">            a[i] = random.nextInt(<span class="number">100</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="二、插入类排序"><a href="#二、插入类排序" class="headerlink" title="二、插入类排序"></a>二、插入类排序</h4><h5 id="1-直接插入"><a href="#1-直接插入" class="headerlink" title="1.直接插入"></a>1.直接插入</h5><p>插入类排序算法的核心思想是，在一个有序的集合中，我们将当前值插入到适合位置上，使得插入结束之后整个集合依然是有序的。代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入排序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i, j, key;</span><br><span class="line">        <span class="keyword">for</span>( i=<span class="number">1</span>; i&lt;array.length; i++ )&#123;</span><br><span class="line">            key = array[i];</span><br><span class="line">            j = i - <span class="number">1</span>;</span><br><span class="line">            <span class="comment">//取当前位置值，与已经排序好的那一部分由大到小进行比较，将其挪到正确的位置</span></span><br><span class="line">            <span class="keyword">while</span> ( j&gt;=<span class="number">0</span> &amp;&amp; key&lt;array[j] )&#123;</span><br><span class="line">                array[j+<span class="number">1</span>] = array[j];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            array[j+<span class="number">1</span>] = key;<span class="comment">//在正确的位置插入key值</span></span><br><span class="line">        &#125;</span><br><span class="line">        print(array);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <h5 id="2、二分插入"><a href="#2、二分插入" class="headerlink" title="2、二分插入"></a>2、二分插入</h5><p>原理是二分查找到合适位置再进行插入。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 二分插入排序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">halfInsertSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">1</span>; i&lt;array.length; i++ )&#123;</span><br><span class="line">            <span class="keyword">int</span> mid, low, high, key;</span><br><span class="line">            low = <span class="number">0</span>;  high = i-<span class="number">1</span>;</span><br><span class="line">            key = array[i];</span><br><span class="line">            <span class="comment">//这个循环之后，要插入的地方为low</span></span><br><span class="line">            <span class="keyword">while</span> ( low&lt;=high )&#123;</span><br><span class="line">                mid = (low+high)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>( key==array[mid] )&#123;</span><br><span class="line">                    low = mid;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>( key&gt;array[mid] )&#123;</span><br><span class="line">                    low = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    high = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//将已排序部分low之后的都向后移动一位</span></span><br><span class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> k=i-<span class="number">1</span>; k&gt;=low; k-- )&#123;</span><br><span class="line">                array[k+<span class="number">1</span>] = array[k];</span><br><span class="line">            &#125;</span><br><span class="line">            array[low] = key;</span><br><span class="line">        &#125;</span><br><span class="line">        print(array);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
