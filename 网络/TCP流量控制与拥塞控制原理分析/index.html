@@ -172,7 +172,7 @@
 <meta property="og:description" content="TCP的流量控制使用滑动窗口进行流量控制所谓的流量控制，就是让发送方的发送速率不要太快，让接收方来得及接收。利用滑动窗口机制可以很方便的在TCP连接上实现对发送方的流量控制。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190508203505829.jpg">
-<meta property="og:updated_time" content="2019-05-08T15:35:05.183Z">
+<meta property="og:updated_time" content="2019-05-08T16:02:25.207Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP流量控制与拥塞控制原理分析">
 <meta name="twitter:description" content="TCP的流量控制使用滑动窗口进行流量控制所谓的流量控制，就是让发送方的发送速率不要太快，让接收方来得及接收。利用滑动窗口机制可以很方便的在TCP连接上实现对发送方的流量控制。">
@@ -554,7 +554,7 @@
 <p>当数据到达较快而网络速率较慢时，用这样的方式可以明显的减少所用的网络带宽。</p>
 <p>该算法还规定，当到达的数据已达到发送窗口大小的一般或已达到报文段的最大长度时，就立即发送一个报文段，这样做可以有效地提高网络的吞吐量。（吞吐量：单位时间从网络从网络输出的分组数目）</p>
 <p>总体来说，目的是使得在发送方不发送很小的报文段的同时，接受方也不要在缓存刚刚有了一点小的空间就急忙把这个很小的窗口大小信息发送给对方。</p>
-<h3 id="TCP的拥塞控制"><a href="#TCP的拥塞控制" class="headerlink" title="TCP的拥塞控制"></a>TCP的拥塞控制</h3><h4 id="拥塞控制的原理"><a href="#拥塞控制的原理" class="headerlink" title="拥塞控制的原理"></a>拥塞控制的原理</h4><h6 id="拥塞控制的产生"><a href="#拥塞控制的产生" class="headerlink" title="拥塞控制的产生"></a>拥塞控制的产生</h6><p>在某段时间，若对网络中的某一资源的需求超过了该资源所能提供的可用部分，网络的性能就要变差，这种情况叫做<strong>拥塞</strong>。也就是说：<br>$$ \sum对资源的需求 &gt; 可用资源 $$</p>
+<h3 id="TCP的拥塞控制"><a href="#TCP的拥塞控制" class="headerlink" title="TCP的拥塞控制"></a>TCP的拥塞控制</h3><h4 id="拥塞控制的原理"><a href="#拥塞控制的原理" class="headerlink" title="拥塞控制的原理"></a>拥塞控制的原理</h4><h6 id="拥塞控制的产生"><a href="#拥塞控制的产生" class="headerlink" title="拥塞控制的产生"></a>拥塞控制的产生</h6><p>在某段时间，若对网络中的某一资源的需求超过了该资源所能提供的可用部分，网络的性能就要变差，这种情况叫做<strong>拥塞</strong>。也就是说：<br>$$\sum对资源的需求 &gt; 可用资源$$</p>
 <p>网络拥塞往往是由许多因素引起的，简单的提高节点处理机的运算速度，或者扩大结点缓存的存储空间，在很多时候并不能解决拥塞问题。例如<br>1）当某个结点缓存容量扩展到非常大，于是凡到达该结点的分组均可在结点的缓存队列中排队，不受任何限制。由于输出链路的容量和处理机的速度并未提高，因此在这队列中的绝大多数的分组在排队等待时间会大大增加，结果上层软件只好把他们进行重传（因为已超时）。</p>
 <p>因此，问题的实质往往是整个系统的各个部分不匹配，只有各个部分平衡了，问题才会得到解决。</p>
 <h6 id="拥塞控制和流量控制的不同"><a href="#拥塞控制和流量控制的不同" class="headerlink" title="拥塞控制和流量控制的不同"></a>拥塞控制和流量控制的不同</h6><p>所谓<strong>拥塞控制</strong>就是<strong>防止过多的数据注入到网络中</strong>，<strong>这样可以使网络中的路由器或链路不致过载</strong>。拥塞控制所要做的都有一个前提，就是<strong>网络能承受现有的网络负荷</strong>。它是一个<strong>全局性</strong>的过程，涉及到所有的主机、所有的服务器，以及与降低网络传输性能有关的所有因素。<br>相反，<strong>流量控制往往指的是点对点通信量的控制</strong>，是个<strong>端到端</strong>的问题。流量控制所要做的就是控制发送端发送数据的速率，以便使接收端来得及接受。</p>
@@ -1470,6 +1470,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
