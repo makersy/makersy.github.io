@@ -539,7 +539,7 @@
       
         
           
-            <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>注解（Annotation ），有点标记、注释的意思，也被称为元数据，他为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。在 Java 中注解是一个很重要的知识点。</p>
+            <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>注解（Annotation ），有标记、注释的意思，也被称为元数据，他为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。在 Java 中注解是一个很重要的知识点。</p>
 <p>Java 注解是从 Java SE5 引入的。他可以提供用来完整描述程序所需的信息，为程序的元素（类、方法、成员变量）加上更直观更明了的说明，这些说明信息是与程序的业务逻辑无关，并且是供指定的工具或框架使用的。<br>Annontation像一种修饰符一样，应用于包、类型、构造方法、方法、成员变量、参数及本地变量的声明语句中。</p>
 <h3 id="标准注解"><a href="#标准注解" class="headerlink" title="标准注解"></a>标准注解</h3><p>注解的语法比较简单，除了@符号的使用之外，基本与Java固有语法无异。JDK5内置了三种，定义在java.lang中的注解：</p>
 <ul>
@@ -557,7 +557,7 @@
 <p>注意：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</p>
 <p> 当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</p>
 <h3 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">定义注解格式：</span><br><span class="line">　　<span class="keyword">public</span> <span class="meta">@interface</span> 注解名 &#123;定义体&#125;</span><br></pre></td></tr></table></figure>
-<p>关于Annotation类型里面的参数该怎么设定:<br>第一,只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型；　 　<br>第二,参数成员只能用基本类型byte,short,char,int,long,float,double,boolean八种基本数据类型和 String,Enum,Class,annotations等数据类型,以及这一些类型的数组.例如,String value();这里的参数成员就为String;</p>
+<p>关于Annotation类型里面的参数该怎么设定:<br>第一,只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型；　 　<br>第二,参数成员只能用基本类型byte,short,char,int,long,float,double,boolean八种基本数据类型和 String,Enum,Class,annotations等数据类型,以及这一些类型的数组.例如,String value();这里的参数成员就为String。</p>
 <h3 id="注解的使用"><a href="#注解的使用" class="headerlink" title="注解的使用"></a>注解的使用</h3><p>刚接触注解时，我想很多人都会有一个疑问，这个东西有什么用呢？官方文档给了我们答案：</p>
 <blockquote>
 <p>注解是一系列元数据，它提供数据用来解释程序代码，但是注解并非是所解释的代码本身的一部分。注解对于代码的运行效果没有直接影响。</p>
@@ -569,7 +569,7 @@
 </ul>
 </blockquote>
 <p>在Spring中大量使用了注解，比如常用的@Controller、@Service等，这些注解大大简化了方法的配置工作。</p>
-<p>在此上述作用的第一个：提供信息给编译器，来做一个示范。</p>
+<p>在此我用上述作用的第一个：提供信息给编译器，来做一个示范。</p>
 <p>假设我在一个类里面定义了很多方法，我需要检查每一个方法是否有异常，并将其一一打印，那么我就可以在需要检查的方法上加一个注解，然后用反射的方法来调用方法并获取其注解，判断并打印之。</p>
 <p>首先是注解类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by makersy on 2019</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CheckException &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> "no description"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
