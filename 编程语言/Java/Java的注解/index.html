@@ -172,7 +172,7 @@
 <meta property="og:description" content="介绍注解（Annotation ），有标记、注释的意思，也被称为元数据，他为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。在 Java 中注解是一个很重要的知识点。 Java 注解是从 Java SE5 引入的。他可以提供用来完整描述程序所需的信息，为程序的元素（类、方法、成员变量）加上更直观更明了的说明，这些说明信息是与程序的业务逻辑无关，并且是供指">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://qn.makersy.top/blog/20190706/IqirUJlo9EMX.jpg?imageslim">
-<meta property="og:updated_time" content="2019-07-06T13:12:17.047Z">
+<meta property="og:updated_time" content="2019-07-06T13:20:12.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java的注解">
 <meta name="twitter:description" content="介绍注解（Annotation ），有标记、注释的意思，也被称为元数据，他为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。在 Java 中注解是一个很重要的知识点。 Java 注解是从 Java SE5 引入的。他可以提供用来完整描述程序所需的信息，为程序的元素（类、方法、成员变量）加上更直观更明了的说明，这些说明信息是与程序的业务逻辑无关，并且是供指">
@@ -548,6 +548,7 @@
       
         <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>注解（Annotation ），有标记、注释的意思，也被称为元数据，他为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。在 Java 中注解是一个很重要的知识点。</p>
 <p>Java 注解是从 Java SE5 引入的。他可以提供用来完整描述程序所需的信息，为程序的元素（类、方法、成员变量）加上更直观更明了的说明，这些说明信息是与程序的业务逻辑无关，并且是供指定的工具或框架使用的。<br>Annontation像一种修饰符一样，应用于包、类型、构造方法、方法、成员变量、参数及本地变量的声明语句中。</p>
+<a id="more"></a>
 <h3 id="标准注解"><a href="#标准注解" class="headerlink" title="标准注解"></a>标准注解</h3><p>注解的语法比较简单，除了@符号的使用之外，基本与Java固有语法无异。JDK5内置了三种，定义在java.lang中的注解：</p>
 <ul>
 <li><code>@Override</code>，表示当前方法定义将覆盖超类中方法。如果将这个单词拼写错误，或者方法签名对应不上被覆盖的方法，那么编译器就会发出错误提示。</li>
@@ -557,10 +558,13 @@
 <h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><p>元注解专职负责注解其他注解，Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。</p>
 <p><strong>@Target：用于描述该注解的适用范围：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">取值(ElementType)有：</span><br><span class="line">　　　　1.CONSTRUCTOR:用于描述构造器</span><br><span class="line">　　　　2.FIELD:用于描述域（包括enum实例）</span><br><span class="line">　　　　3.LOCAL_VARIABLE:用于描述局部变量</span><br><span class="line">　　　　4.METHOD:用于描述方法</span><br><span class="line">　　　　5.PACKAGE:用于描述包</span><br><span class="line">　　　　6.PARAMETER:用于描述参数</span><br><span class="line">　　　　7.TYPE:用于描述类、接口(包括注解类型) 或enum声明</span><br></pre></td></tr></table></figure>
-<h5 id="Retention：表示需要在什么级别保存该注解信息-生命周期"><a href="#Retention：表示需要在什么级别保存该注解信息-生命周期" class="headerlink" title="@Retention：表示需要在什么级别保存该注解信息 (生命周期)"></a>@Retention：表示需要在什么级别保存该注解信息 (生命周期)</h5><p>某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。</p>
+<p><strong>@Retention：表示需要在什么级别保存该注解信息 (生命周期)</strong></p>
+<p>某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">取值（RetentionPoicy）有：</span><br><span class="line">　　　　1.SOURCE:在源文件中有效（即源文件保留），会被编译器丢弃</span><br><span class="line">　　　　2.CLASS:在class文件中有效（即class保留），但会被VM丢弃</span><br><span class="line">　　　　3.RUNTIME:在运行时有效（即运行时保留），可以通过反射机制读            		取注解的信息</span><br></pre></td></tr></table></figure>
-<h5 id="Documented：包含在Javadoc中"><a href="#Documented：包含在Javadoc中" class="headerlink" title="@Documented：包含在Javadoc中"></a>@Documented：包含在Javadoc中</h5><p>描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化</p>
-<h5 id="Inherited：允许子类继承父类中的注解"><a href="#Inherited：允许子类继承父类中的注解" class="headerlink" title="@Inherited：允许子类继承父类中的注解"></a>@Inherited：允许子类继承父类中的注解</h5><p>如果一个超类被 @Inherited 注解过的注解进行注解的话，那么如果它的子类没有被任何注解应用的话，那么这个子类就继承了超类的注解。</p>
+<p><strong>@Documented：包含在Javadoc中</strong></p>
+<p>描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化</p>
+<p><strong>@Inherited：允许子类继承父类中的注解</strong></p>
+<p>如果一个超类被 @Inherited 注解过的注解进行注解的话，那么如果它的子类没有被任何注解应用的话，那么这个子类就继承了超类的注解。</p>
 <p>注意：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</p>
 <p> 当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</p>
 <h3 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">定义注解格式：</span><br><span class="line">　　<span class="keyword">public</span> <span class="meta">@interface</span> 注解名 &#123;定义体&#125;</span><br></pre></td></tr></table></figure>
@@ -884,7 +888,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准注解"><span class="nav-number">2.</span> <span class="nav-text">标准注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元注解"><span class="nav-number">3.</span> <span class="nav-text">元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Retention：表示需要在什么级别保存该注解信息-生命周期"><span class="nav-number">3.0.1.</span> <span class="nav-text">@Retention：表示需要在什么级别保存该注解信息 (生命周期)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Documented：包含在Javadoc中"><span class="nav-number">3.0.2.</span> <span class="nav-text">@Documented：包含在Javadoc中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Inherited：允许子类继承父类中的注解"><span class="nav-number">3.0.3.</span> <span class="nav-text">@Inherited：允许子类继承父类中的注解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义注解"><span class="nav-number">4.</span> <span class="nav-text">自定义注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解的使用"><span class="nav-number">5.</span> <span class="nav-text">注解的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准注解"><span class="nav-number">2.</span> <span class="nav-text">标准注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元注解"><span class="nav-number">3.</span> <span class="nav-text">元注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义注解"><span class="nav-number">4.</span> <span class="nav-text">自定义注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解的使用"><span class="nav-number">5.</span> <span class="nav-text">注解的使用</span></a></li></ol></div>
             
 
           </div>
