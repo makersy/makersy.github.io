@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[剑指offer-正则表达式匹配]]></title>
+    <url>%2F%E5%89%91%E6%8C%87offer%2F%E5%89%91%E6%8C%87offer-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%2F</url>
+    <content type="text"><![CDATA[题目描述请实现一个函数用来匹配包括&#39;.&#39;和 &#39;*&#39; 的正则表达式。模式中的字符&#39;.&#39;表示任意一个字符，而 &#39;*&#39; 表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串&quot;aaa&quot;与模式&quot;a.a&quot;和&quot;ab*ac*a&quot;匹配，但是与&quot;aa.a&quot;和&quot;ab*a&quot;均不匹配。 题解 markdown里面的 * 需要转义，一个个转实在有点麻烦，还是把文字放在代码块里好了。 1234567891011121314151617我们可以把问题转换为当前字符的下一个字符是否为 * 来处理，那么就归纳为以下几种情况：1. 如果字符串当前位置的下一个字符不是*，那么： # 字符串与模式的当前位置字符匹配：字符串和模式的索引均向后移一位，继续匹配之后的； # 字符串与模式的当前位置字符不匹配：返回false。 2. 如果字符串当前位置下一个字符是*，那么： # 如果当前位置字符不匹配：模式索引后移2位，字符串不变，相当于 x* 这两个字符被忽略掉， 因为 * 可以匹配0次； # 如果当前位置字符匹配，有三种方式继续匹配，采取递归来一一试探： ## 模式索引后移2位，字符串不变，相当于 x* 这两个字符被忽略掉； 这里解释下为什么这么做。 举个栗子，"bbbba"和".*a"，如果到了第4个b的时候没有把".*"给跳过去，那么 ".*"还会继续匹配下个字符a，那么模式中的a就得不到匹配，返回false。实际上 如果".*"匹配了4个b，然后再匹配最后那个a，是true的； ## 字符串索引后移1位，模式不变，即使用当前字符继续匹配字符串，因为 * 可以匹配多次； ## 字符串索引后移1位，模式后移2位，即 x* 只匹配1次。 代码如下： 12345678910111213141516171819202122232425262728293031323334public class Solution &#123; public boolean match(char[] str, char[] pattern) &#123; if( str==null || pattern==null ) return false; return matchSub(str, 0, pattern, 0); &#125; public boolean matchSub(char[] str, int strIdx, char[] p, int pIdx)&#123; //如果匹配完成，返回true if( strIdx==str.length &amp;&amp; pIdx==p.length ) return true; //如果pattern先到最后，返回false，这样的话匹配是必定失败的 if( strIdx != str.length &amp;&amp; pIdx==p.length ) return false; //第二个是* if( pIdx+1 &lt; p.length &amp;&amp; p[pIdx+1]=='*' )&#123; //字符串没到尾，且当前位置匹配，三种情况 if( strIdx!=str.length &amp;&amp; str[strIdx]==p[pIdx] || strIdx != str.length &amp;&amp; p[pIdx]=='.' )&#123; return matchSub(str, strIdx, p, pIdx+2) || matchSub(str, strIdx+1, p, pIdx) || matchSub(str, strIdx+1, p, pIdx+2); &#125;else &#123; //字符串到尾，或者当前位置不匹配，都把模式向后移动2位，因为*是可以匹配0次的 return matchSub(str, strIdx, p, pIdx+2); &#125; &#125; //第二个不是*，且当前位置匹配 if( strIdx != str.length &amp;&amp; (str[strIdx] == p[pIdx] || p[pIdx]=='.') )&#123; return matchSub(str, strIdx+1, p, pIdx+1); &#125; return false; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>剑指offer</tag>
+        <tag>正则表达式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java的注解]]></title>
     <url>%2F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%2FJava%2FJava%E7%9A%84%E6%B3%A8%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[介绍注解（Annotation ），有标记、注释的意思，也被称为元数据，他为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。在 Java 中注解是一个很重要的知识点。 Java 注解是从 Java SE5 引入的。他可以提供用来完整描述程序所需的信息，为程序的元素（类、方法、成员变量）加上更直观更明了的说明，这些说明信息是与程序的业务逻辑无关，并且是供指定的工具或框架使用的。Annontation像一种修饰符一样，应用于包、类型、构造方法、方法、成员变量、参数及本地变量的声明语句中。 标准注解注解的语法比较简单，除了@符号的使用之外，基本与Java固有语法无异。JDK5内置了三种，定义在java.lang中的注解： @Override，表示当前方法定义将覆盖超类中方法。如果将这个单词拼写错误，或者方法签名对应不上被覆盖的方法，那么编译器就会发出错误提示。 @Deprecated，如果使用了注解为这个单词的元素，那么编译器就会发出警告。 @SuppressWarnings，关闭不当的编译器警告信息。 元注解元注解专职负责注解其他注解，Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。 @Target：用于描述该注解的适用范围： 12345678取值(ElementType)有： 1.CONSTRUCTOR:用于描述构造器 2.FIELD:用于描述域（包括enum实例） 3.LOCAL_VARIABLE:用于描述局部变量 4.METHOD:用于描述方法 5.PACKAGE:用于描述包 6.PARAMETER:用于描述参数 7.TYPE:用于描述类、接口(包括注解类型) 或enum声明 @Retention：表示需要在什么级别保存该注解信息 (生命周期) 某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。 1234取值（RetentionPoicy）有： 1.SOURCE:在源文件中有效（即源文件保留），会被编译器丢弃 2.CLASS:在class文件中有效（即class保留），但会被VM丢弃 3.RUNTIME:在运行时有效（即运行时保留），可以通过反射机制读 取注解的信息 @Documented：包含在Javadoc中 描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化 @Inherited：允许子类继承父类中的注解 如果一个超类被 @Inherited 注解过的注解进行注解的话，那么如果它的子类没有被任何注解应用的话，那么这个子类就继承了超类的注解。 注意：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。 当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。 自定义注解12定义注解格式： public @interface 注解名 &#123;定义体&#125; 关于Annotation类型里面的参数该怎么设定:第一,只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型； 第二,参数成员只能用基本类型byte,short,char,int,long,float,double,boolean八种基本数据类型和 String,Enum,Class,annotations等数据类型,以及这一些类型的数组.例如,String value();这里的参数成员就为String。 注解的使用刚接触注解时，我想很多人都会有一个疑问，这个东西有什么用呢？官方文档给了我们答案： 注解是一系列元数据，它提供数据用来解释程序代码，但是注解并非是所解释的代码本身的一部分。注解对于代码的运行效果没有直接影响。 注解有许多用处，主要如下： 提供信息给编译器： 编译器可以利用注解来探测错误和警告信息 编译阶段时的处理： 软件工具可以用来利用注解信息来生成代码、Html文档或者做其它相应处理。 运行时的处理： 某些注解可以在程序运行的时候接受代码的提取值得注意的是，注解不是代码本身的一部分。 在Spring中大量使用了注解，比如常用的@Controller、@Service等，这些注解大大简化了方法的配置工作。 在此我用上述作用的第一个：提供信息给编译器，来做一个示范。 假设我在一个类里面定义了很多方法，我需要检查每一个方法是否有异常，并将其一一打印，那么我就可以在需要检查的方法上加一个注解，然后用反射的方法来调用方法并获取其注解，判断并打印之。 首先是注解类： 123456789/** * Created by makersy on 2019 */@Target(ElementType.METHOD)@Retention(RetentionPolicy.RUNTIME)public @interface CheckException &#123; public String description() default "no description";&#125; 然后是方法类： 12345678910111213141516171819202122232425262728293031323334353637/** * Created by makersy on 2019 */public class SomeMethods &#123; @CheckException(description = "减法") public static void method1() &#123; System.out.println("1 - 1 = " + (1 - 1)); &#125; @CheckException(description = "加法") public static void method3() &#123; System.out.println("4 + 3 = " + (4 + 3)); &#125; @CheckException(description = "乘法") public static void method2() &#123; System.out.println("2 * 3 = " + (2 * 3)); &#125; @CheckException(description = "除法") public static void method4() &#123; System.out.println("5 / 0 = " + (5 / 0)); &#125;// @CheckException// public static void method5() &#123;// System.out.println("1 - 1 = " + (1 - 1));// &#125; //没有注解的类，在主方法中不会被调用到 public static void method6() &#123; System.out.println("no annotation"); &#125; &#125; 最后是测试类： 1234567891011121314151617181920212223242526/** * Created by makersy on 2019 */public class TestTool &#123; public static void main(String[] args) &#123; SomeMethods someMethods = new SomeMethods(); int cnt = 0; //异常计数 for (Method method : SomeMethods.class.getDeclaredMethods()) &#123; if (method.isAnnotationPresent(CheckException.class)) &#123; //判断注解是否为我们定义的那个 CheckException anno = method.getAnnotation(CheckException.class); //获取CheckException注解 System.out.println(anno.description() + ":"); //打印方法注解的描述 try &#123; method.invoke(someMethods, null); //调用方法 &#125; catch (IllegalAccessException | InvocationTargetException e) &#123; System.out.println(method.getName() + " has error. Caused By: " + e.getCause().getClass().getSimpleName()); System.out.println(e.getCause().getMessage()); cnt++; //异常计数+1 &#125; &#125; &#125; System.out.println(someMethods.getClass().getSimpleName() + " has " + cnt + " error!"); &#125;&#125; 下面是结果展示：]]></content>
@@ -211,8 +223,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>前端</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -343,8 +355,8 @@
       </categories>
       <tags>
         <tag>C/C++</tag>
-        <tag>STL</tag>
         <tag>数据结构</tag>
+        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
