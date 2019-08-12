@@ -163,21 +163,21 @@
 
 
 
-  <meta name="description" content="HashMap 简介HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。  JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。">
+  <meta name="description" content="HashMap 简介HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。  JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。 Hash">
 <meta name="keywords" content="Java,集合,HashMap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Java】集合-HashMap详解">
 <meta property="og:url" content="https://makersy.top/编程语言/Java/【Java】集合-HashMap详解/index.html">
 <meta property="og:site_name" content="Makersy&#39;s Blog">
-<meta property="og:description" content="HashMap 简介HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。  JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。">
+<meta property="og:description" content="HashMap 简介HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。  JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。 Hash">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3FuLm1ha2Vyc3kudG9wL2Jsb2cvMjAxOTA3MTgvVUExMGFlVDFmYVlPLmpwZw">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3FuLm1ha2Vyc3kudG9wL2Jsb2cvMjAxOTA3MTgvaGRTS2dqejhjanRKLmpwZw">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3FuLm1ha2Vyc3kudG9wL2Jsb2cvMjAxOTA3MTgvQVBqV3NhYWhZVmlpLnBuZw">
-<meta property="og:updated_time" content="2019-07-18T14:30:19.339Z">
+<meta property="og:updated_time" content="2019-07-18T14:35:30.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Java】集合-HashMap详解">
-<meta name="twitter:description" content="HashMap 简介HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。  JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。">
+<meta name="twitter:description" content="HashMap 简介HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。  JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。 Hash">
 <meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3FuLm1ha2Vyc3kudG9wL2Jsb2cvMjAxOTA3MTgvVUExMGFlVDFmYVlPLmpwZw">
 
 
@@ -549,7 +549,8 @@
 
       
         <h2 id="HashMap-简介"><a href="#HashMap-简介" class="headerlink" title="HashMap 简介"></a>HashMap 简介</h2><p>HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。 </p>
-<p>JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。</p>
+<p>JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。</p>
+<p>HashMap继承了<code>AbstractMap</code>抽象类，并实现了<code>Map</code>、<code>Cloneable</code>、<code>Serializable</code>接口。</p>
 <a id="more"></a>
 <h2 id="底层数据结构分析"><a href="#底层数据结构分析" class="headerlink" title="底层数据结构分析"></a>底层数据结构分析</h2><h3 id="JDK1-8之前"><a href="#JDK1-8之前" class="headerlink" title="JDK1.8之前"></a>JDK1.8之前</h3><p>JDK1.8 之前 HashMap 底层是 <strong>数组和链表</strong> 结合在一起使用也就是 <strong>链表散列</strong>。<strong>HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash  值，然后通过 <code>(n - 1) &amp; hash</code> 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。</strong></p>
 <p><strong>所谓扰动函数指的就是 HashMap 的 <code>hash</code> 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 <code>hashCode()</code> 方法 换句话说使用扰动函数之后可以减少碰撞。</strong></p>
@@ -756,6 +757,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/数据库/drop、truncate和delete的区别/" rel="prev" title="drop、truncate和delete的区别">
+                drop、truncate和delete的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -833,7 +838,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -892,7 +897,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -983,7 +990,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
