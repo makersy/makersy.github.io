@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LRU算法的Java实现]]></title>
+    <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%2FLRU%E7%AE%97%E6%B3%95%E7%9A%84Java%E5%AE%9E%E7%8E%B0%2F</url>
+    <content type="text"><![CDATA[LRU原理LRU（Least recently used，最近最少使用）算法根据数据的历史访问记录来进行淘汰数据，其核心思想是“如果数据最近被访问过，那么将来被访问的几率也更高”。 实现方式要实现LRU算法，有 2 种实现方式。 第一种，是使用Java中现成的API —— LinkedHashMap。它在HashMap的基础增加了按照访问顺序排序的功能，非常适合LRU的实现。 代码如下： 123456789101112131415161718192021/** * @author yhl * @date 2019/8/14 */public class LRUCacheByAPI extends LinkedHashMap &#123; private static final float DEFAULE_LOAD_FACTOR = 0.75f; private int capaciticy; public LRUCacheByAPI(int capaciticy) &#123; super((int) Math.ceil(capaciticy / DEFAULE_LOAD_FACTOR), DEFAULE_LOAD_FACTOR, true); this.capaciticy = capaciticy; &#125; @Override protected boolean removeEldestEntry(Map.Entry eldest) &#123; return size() &gt; capaciticy; &#125;&#125; 第二种，是使用哈希 + 双向链表的方式，自己造轮子实现。用双向链表的原因是删除节点快，用哈希原因是查找快，使得put，get较快。 代码如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119/** * @author yhl * @date 2019/8/14 * * 使用双向链表 + 哈希实现 LRU 算法 * LRU算法：即最近最少使用算法，当 map 的容量到达规定值之后，再添加元素时就要删掉一个距离现在 * 最久未使用的一个元素。 */public class LRUCache&lt;K, V&gt; &#123; /** * 链表节点定义 */ class Node &#123; private K k; private V v; private Node pre, next; public Node() &#123; &#125; public Node(K k, V v) &#123; this.k = k; this.v = v; &#125; &#125; /** * 双向链表定义 */ class DoubleLinkedList &#123; //头尾节点，虚节点，不保存数据 Node head, tail; //链表元素数 private int size; public DoubleLinkedList() &#123; head = new Node(); tail = new Node(); head.next = tail; tail.pre = head; size = 0; &#125; public void addFirst(Node node) &#123; node.next = head.next; node.pre = head; head.next.pre = node; head.next = node; size++; &#125; public void remove(Node node) &#123; node.pre.next = node.next; node.next.pre = node.pre; size--; &#125; public Node removeLast() &#123; if (size &gt; 0) &#123; Node last = tail.pre; remove(last); return last; &#125; else &#123; return null; &#125; &#125; public int size() &#123; return size; &#125; &#125; private HashMap&lt;K, Node&gt; map; private DoubleLinkedList cache; /** * 最大容量 */ private int capaciticy; public LRUCache(int capaciticy) &#123; this.capaciticy = capaciticy; map = new HashMap&lt;&gt;(); cache = new DoubleLinkedList(); &#125; public V get(K key) &#123; if (!map.containsKey(key)) &#123; return null; &#125; V value = map.get(key).v; put(key, value); return value; &#125; public void put(K key, V value) &#123; Node node = new Node(key, value); if (map.containsKey(key)) &#123; //如果已经存在这个key cache.remove(map.get(key)); cache.addFirst(node); map.put(key, node); &#125; else &#123; //node中要保存key和value的原因：删除多余node的时候，需要同时删除map中的映射， //因此node需要保存key值作为 map.remove() 的参数 if (capaciticy == cache.size()) &#123; Node last = cache.removeLast(); map.remove(last.k); &#125; map.put(key, node); cache.addFirst(node); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>LRU</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[缓存穿透、缓存击穿、缓存雪崩、热点数据失效的解决方法]]></title>
     <url>%2F%E6%95%B0%E6%8D%AE%E5%BA%93%2FRedis%2F%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E3%80%81%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9%E3%80%81%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE%E5%A4%B1%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[我们使用缓存时，一般流程是这样的：当需要查询一条数据，先去查询缓存，如果缓存有就直接返回，如果没有就去查询数据库，然后返回。这时是有可能会出现一些异常现象的。 一、缓存穿透什么是缓存穿透正常情况下，我们去查询数据都是存在于缓存中，因为使用缓存目的就是尽量少的查询数据库，偶尔可能会有数据存在数据库里面的情况。 如果有一个请求去查询一条压根儿数据库中根本就不存在的数据，也就是缓存和数据库都查询不到这条数据，但是请求每次都会打到数据库上面去。 这种查询不存在数据的现象我们称为缓存穿透。 穿透带来的问题如果恶意的人拿一个不存在的数据来不停地查询，每次缓存都未命中，然后请求打到数据库，这样数据库很有可能扛不住压力而挂掉。 解决办法 缓存空值 之所以会发生穿透，就是因为缓存中没有存储这些空数据的key。从而导致每次查询都到数据库去了。那么我们就可以为这些 key 对应的值专门设置一个 null 值丢到缓存里面去，同时设置一个较短的过期时间。后面再出现查询这个key 的请求的时候，直接返回 null。 BloomFilter（布隆过滤器） BloomFilter 类似于一个hbase set 用来判断某个元素（key）是否存在于某个集合中。将所有可能存在的数据哈希到一个足够大的bitmap中，一个一定不存在的数据会被这个 bitmap 拦截掉，从而避免了对底层存储系统的查询压力。 在查询的时候先去 BloomFilter 去查询 key 是否存在，如果不存在就直接返回，存在再走查缓存 -&gt; 查 DB。 如何选择针对于一些恶意攻击，攻击带过来的大量key 是不存在的，那么我们采用第一种方案就会缓存大量不存在key的数据。 此时我们采用第一种方案就不合适了，我们完全可以先对使用第二种方案进行过滤掉这些key。 针对这种key异常多、请求重复率比较低的数据，我们就没有必要进行缓存，使用第二种方案直接过滤掉。 而对于空数据的key有限的，重复率比较高的，我们则可以采用第一种方式进行缓存。 二、缓存击穿什么是缓存击穿在平常高并发的系统中，大量的请求同时查询一个 key 时，此时 key 正好失效了，就会导致大量的请求都打到数据库上面去。这种现象我们称为缓存击穿。 会带来什么问题会造成某一时刻数据库请求量过大，压力剧增。 如何解决产生原因是多个线程同时去查询数据库的这条数据，那么我们可以在第一个查询数据的请求上使用一个互斥锁来锁住它。 其他的线程走到这一步拿不到锁就等着，等第一个线程查询到了数据，然后做缓存。后面的线程进来发现已经有缓存了，就直接走缓存。 三、缓存雪崩什么是缓存雪崩缓存雪崩的情况是说，当某一时刻发生大规模的缓存失效的情况，比如你的缓存服务宕机了，会有大量的请求进来直接打到 DB 上面。结果就是 DB 撑不住，挂掉。 解决办法事前： 使用集群缓存，保证缓存服务的高可用 这种方案就是在发生雪崩前对缓存集群实现高可用，如果是使用 Redis，可以使用 主从+哨兵 ，Redis Cluster 来避免 Redis 全盘崩溃的情况。 事中： ehcache本地缓存 + Hystrix限流&amp;降级,避免MySQL被打死 使用 ehcache 本地缓存的目的也是考虑在 Redis Cluster 完全不可用的时候，ehcache 本地缓存还能够支撑一阵。 使用 Hystrix 进行限流 &amp; 降级 ，比如一秒来了 5000 个请求，我们可以设置假设只能有一秒 2000 个请求能通过这个组件，那么其他剩余的 3000 请求就会走限流逻辑。 然后去调用我们自己开发的降级组件（降级），比如设置的一些默认值呀之类的。以此来保护最后的 MySQL 不会被大量的请求给打死。 事后： 开启 Redis 持久化机制，尽快恢复缓存集群 一旦重启，就能从磁盘上自动加载数据恢复内存中的数据。 四、热点数据集中失效问题这个问题类似于二中的缓存击穿。我们在设置缓存的时候，一般会给缓存设置一个失效时间，过了这个时间，缓存就失效了。 对于一些热点的数据来说，当缓存失效以后会存在大量的请求过来，然后打到数据库去，从而可能导致数据库崩溃的情况。 解决办法 设置不同的失效时间 为了避免这些热点的数据集中失效，那么我们在设置缓存过期时间的时候，我们让他们失效的时间错开。 比如在一个基础的过期时间上加上或者减去一个范围内的随机值。 互斥锁 结合上面的击穿的情况，在第一个请求去查询数据库的时候对他加一个互斥锁，其余的查询请求都会被阻塞住，直到锁被释放，从而保护数据库。 但是也是由于它会阻塞其他的线程，此时系统吞吐量会下降。需要结合实际的业务去考虑是否要这么做。 结尾参考https://blog.csdn.net/zeb_perfect/article/details/54135506#commentBox]]></content>
@@ -327,9 +340,9 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>数据结构</tag>
         <tag>LeetCode</tag>
         <tag>二叉树</tag>
-        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -342,9 +355,9 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>数据结构</tag>
         <tag>LeetCode</tag>
         <tag>二叉树</tag>
-        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -471,9 +484,9 @@
       </categories>
       <tags>
         <tag>算法</tag>
-        <tag>C/C++</tag>
         <tag>队列</tag>
         <tag>贪心</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
