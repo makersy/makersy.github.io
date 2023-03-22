@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_v1_150160cddff7f294ce30.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_v1_150160cddff7f294ce30.svg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"makersy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="关于EL表达式EL表达式全名为Expression Language，是一种为了在JSP中计算和输出Java对象的简单语言。基本语法： $&amp;#123;expression&amp;#125;以上语句中，expression为有效的表达式。该表达式可以和静态文本混合，还可以与其他表达式结合成为更大的表达式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-EL表达式和JSTL标签库">
+<meta property="og:url" content="https://makersy.github.io/2018/12/13/Java-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CJSTL%E6%A0%87%E7%AD%BE%E5%BA%93/index.html">
+<meta property="og:site_name" content="Coder Blog">
+<meta property="og:description" content="关于EL表达式EL表达式全名为Expression Language，是一种为了在JSP中计算和输出Java对象的简单语言。基本语法： $&amp;#123;expression&amp;#125;以上语句中，expression为有效的表达式。该表达式可以和静态文本混合，还可以与其他表达式结合成为更大的表达式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.mukewang.com/climg/5c0dd2980001c66619201080.jpg">
+<meta property="article:published_time" content="2018-12-13T12:50:54.000Z">
+<meta property="article:modified_time" content="2023-03-22T06:29:47.476Z">
+<meta property="article:author" content="makersy">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="EL表达式">
+<meta property="article:tag" content="JSTL标签库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.mukewang.com/climg/5c0dd2980001c66619201080.jpg">
+
+<link rel="canonical" href="https://makersy.github.io/2018/12/13/Java-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CJSTL%E6%A0%87%E7%AD%BE%E5%BA%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java-EL表达式和JSTL标签库 | Coder Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Coder Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/makersy" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://makersy.github.io/2018/12/13/Java-EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CJSTL%E6%A0%87%E7%AD%BE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="makersy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coder Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java-EL表达式和JSTL标签库
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-13 20:50:54" itemprop="dateCreated datePublished" datetime="2018-12-13T20:50:54+08:00">2018-12-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-22 14:29:47" itemprop="dateModified" datetime="2023-03-22T14:29:47+08:00">2023-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="关于EL表达式"><a href="#关于EL表达式" class="headerlink" title="关于EL表达式"></a>关于EL表达式</h4><p><strong>EL表达式</strong>全名为Expression Language，是一种为了在JSP中计算和输出Java对象的简单语言。<br>基本语法： <code>$&#123;expression&#125;</code><br>以上语句中，<em>expression</em>为有效的表达式。该表达式可以和静态文本混合，还可以与其他表达式结合成为更大的表达式。  </p>
+<span id="more"></span>
+<h4 id="EL四个作用域对象"><a href="#EL四个作用域对象" class="headerlink" title="EL四个作用域对象"></a>EL四个作用域对象</h4><p><img src="https://img.mukewang.com/climg/5c0dd2980001c66619201080.jpg"><br>如果我们在jsp页面调用Servlet的数据信息时，不写这个范围，那么EL就会从在小到大的范围内依次去寻找我们调用的这些数据。（因此最好写上）</p>
+<h4 id="EL表达式输出"><a href="#EL表达式输出" class="headerlink" title="EL表达式输出"></a>EL表达式输出</h4><p>语法：<code>$&#123;[作用域.]属性名[.子属性]&#125;</code><br>EL支持绝大多数对象输出，本质是执行<em>toString</em>方法<br>例：</p>
+<blockquote>
+<p>${title}<br>${requestScope.student.name}<br>${emp.salary + 300}<br>${ 1&lt;&#x3D;3 &amp;&amp; 2&gt;4 }</p>
+</blockquote>
+<p>获取数据：<br>我们可以使用EL的内置对象<em>param</em>来简化获取<strong>url</strong>或者<strong>请求体</strong>中的数据<br>语法：<code>$&#123;param.参数名&#125;</code><br>例如当url是 <em><a target="_blank" rel="noopener" href="https://class.makersy.com/lesson?mid=17331">https://class.makersy.com/lesson?mid=17331</a></em><br>在Servlet中，我们用request.getParameter(“mid”)获取<br>而现在可以用<code>$&#123;param.mid&#125;</code>获取了<br>其实，<code>$&#123;param.参数名&#125;</code>就是<code>request.getParameter（“参数名”);</code>的简化形式  </p>
+<h4 id="JSTL标签库"><a href="#JSTL标签库" class="headerlink" title="JSTL标签库"></a>JSTL标签库</h4><h5 id="使用JSTL表达式"><a href="#使用JSTL表达式" class="headerlink" title="使用JSTL表达式"></a>使用JSTL表达式</h5><p>JSTL是JSP标准标签库的简称，它提供的标签能一定程度上代替Java代码，例如<code>&lt;c:forEach/&gt;</code>标签能实现Java语言中的循环功能。</p>
+<p>使用前：<br>1.下载<em>jstl.jar</em>和<em>standard.jar</em>包</p>
+<p>2将这两个包复制到<em>web-inf\lib</em> 目录下</p>
+<p>3.在JSP页面中添加指令，例如：</p>
+<p>核心标签库初始化<br><code>&lt;%@ taglib uri = &quot;http://java.sun.com/jsp/jstl/core&quot; prefix = &quot;c&quot; %&gt;</code><br>或<br>格式标签库初始化<br><code>&lt;%@ taglib uri = &quot;http://java.sun.com/jsp/jstl/fmt&quot; prefix = &quot;fmt&quot; %&gt;</code></p>
+<h4 id="JSTL标签库-1"><a href="#JSTL标签库-1" class="headerlink" title="JSTL标签库"></a>JSTL标签库</h4><p>JSTL有五个标签库，分别是：核心标签库、格式标签库、函数标签库、SQL标签库、XML标签库。<br>主要用<strong>前两者</strong>。</p>
+<p>核心标签库主要完成JSP页面常用功能，包括JSTL表达式标签、URL标签、流程控制标签和循环标签等。其中，表达式标签有</p>
+<ol>
+<li><p>和显示操作有关的<br><code>&lt;c:out value=&quot; $&#123; news.title &#125;&quot;/&gt;</code>输出属性的值 数据库中给出的标签可以显示；<br><code>&lt;c:set var=&quot;uid&quot; value=&quot;admin&quot; scope=&quot;request&quot;/&gt;</code> 存入变量,把uid的变量存入request中;<br><code>&lt;c:remove var=&quot;uid&quot; value=&quot;admin&quot; scope=&quot;request&quot;/&gt;</code>移除变量  把request中的uid的变量移除.</p>
+</li>
+<li><p>实现程序逻辑相关的<br><strong>c:foreach标签</strong><br><code>&lt;c:forEach var=&quot;对象&quot; items=”保存在request中的数组&quot; varStatus=&quot;status&quot;&gt;循环的的变量&lt;c:forEach /&gt;</code><br><code>&lt;c:forEach&gt;</code>标签具有以下一些属性：</p>
+<ul>
+<li>var：迭代参数的名称。在迭代体中可以使用的变量的名称，用来表示每一个迭代变量。类型为String。 </li>
+<li>items：要进行迭代的集合。对于它所支持的类型将在下面进行讲解。 <ul>
+<li>varStatus：迭代变量的名称，用来表示迭代的状态，可以访问到迭代自身的信息。 </li>
+<li>begin：如果指定了items，那么迭代就从items[begin]开始进行迭代；如果没有指定items，那么就从begin开始迭代。它的类型为整数。</li>
+</ul>
+</li>
+<li>end：如果指定了items，那么就在items[end]结束迭代；如果没有指定items，那么就在end结束迭代。它的类型也为整数。 </li>
+<li>step：迭代的步长。</li>
+</ul>
+</li>
+</ol>
+<p><code>&lt;c:forEach&gt;</code>标签的items属性支持Java平台所提供的所有标准集合类型。此外，您可以使用该操作来迭代数组（包括基本类型数组）中的元素。它所支持的集合类型以及迭代的元素如下所示：<br>​            java.util.Collection：调用iterator()来获得的元素。             java.util.Map：通过java.util.Map.Entry所获得的实例。<br>​            java.util.Iterator：迭代器元素。<br>​            java.util.Enumeration：枚举元素。<br>​            Object实例数组：数组元素。<br>​            基本类型值数组：经过包装的数组元素。<br>​            用逗号定界的String：分割后的子字符串。<br>​            javax.servlet.jsp.jstl.sql.Result：SQL查询所获得的行。<br>​          不论是对整数还是对集合进行迭代， <code>&lt;c:forEach&gt;</code>的varStatus属性所起的作用相同。和var属性一样，varStatus用于创建限定了作用域的变量（改变量只在当前标签体内起作用）。不过，由varStatus属性命名的变量并不存储当前索引值或当前元素，而是赋予<em>javax.servlet.jsp.jstl.core.LoopTagStatus</em>类的实例。该类包含了一系列的特性，它们描述了迭代的当前状态，如下这些属性的含义如下所示：<br>​            current：当前这次迭代的（集合中的）项。<br>​            index：当前这次迭代从0开始的迭代索引。<br>​            count：当前这次迭代从1开始的迭代计数。<br>​            first：用来表明当前这轮迭代是否为第一次迭代，该属性为boolean类型。<br>​            last：用来表明当前这轮迭代是否为最后一次迭代，该属性为boolean类型。<br>​            begin：begin属性的值。<br>​            end：end属性的值<br>​            step：step属性的值<br>​<br>下面是一个使用的小例子，判断x的值并输出他所在的区间。  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/core&quot; prefix=&quot;c&quot;%&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">&lt;%</span><br><span class="line">request.setAttribute(&quot;x&quot;, &quot;11&quot;);</span><br><span class="line">%&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">c:choose</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">&quot;$&#123;x&gt;0 &amp;&amp; x&lt;=10 &#125;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">style</span>=<span class="string">&quot;color:blue&quot;</span>&gt;</span>1-10之间的整数<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">&quot;$&#123;x&gt;10 &amp;&amp; x&lt;=20 &#125;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">style</span>=<span class="string">&quot;color:lightcoral&quot;</span>&gt;</span>11-20之间的整数<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">c:choose</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>格式化日期</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">jstl日期格式化</span><br><span class="line">代码</span><br><span class="line">&lt;%@page import=&quot;java.util.Date&quot;%&gt;</span><br><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/fmt&quot; prefix=&quot;fmt&quot;%&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Insert title here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">&lt;%</span><br><span class="line">request.setAttribute(&quot;amt&quot;, &quot;1898923.234&quot;);</span><br><span class="line">request.setAttribute(&quot;now&quot;, new Date());</span><br><span class="line">request.setAttribute(&quot;html&quot;, &quot;<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;index.html&#x27;</span>&gt;</span>index<span class="tag">&lt;/<span class="name">a</span>&gt;</span>&quot;);</span><br><span class="line">request.setAttribute(&quot;nothing&quot;, null);</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">formatDate patttern</span></span><br><span class="line"><span class="comment">yyyy - 四位年</span></span><br><span class="line"><span class="comment">MM = 两位月</span></span><br><span class="line"><span class="comment">dd = 两位日</span></span><br><span class="line"><span class="comment">HH - 24小时制</span></span><br><span class="line"><span class="comment">hh - 12小时制</span></span><br><span class="line"><span class="comment">mm - 分钟</span></span><br><span class="line"><span class="comment">ss - 秒数</span></span><br><span class="line"><span class="comment">SSS - 毫秒</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fmt:formatDate</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;requestScope.now &#125;&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;yyyy年MM月dd日HH时mm分ss秒SSS毫秒&quot;</span> /&gt;</span>	</span><br><span class="line"><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag"># EL表达式</a>
+              <a href="/tags/JSTL%E6%A0%87%E7%AD%BE%E5%BA%93/" rel="tag"># JSTL标签库</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/12/09/%E5%85%B3%E4%BA%8EServlet/" rel="prev" title="关于Servlet和JSP">
+      <i class="fa fa-chevron-left"></i> 关于Servlet和JSP
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/12/13/eclipse%E5%BB%BA%E7%AB%8Bweb%E9%A1%B9%E7%9B%AE%E6%97%B6%E5%BF%98%E4%BA%86%E7%94%9F%E6%88%90xml%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" rel="next" title="eclipse建立web项目时忘了生成xml文件的解决办法">
+      eclipse建立web项目时忘了生成xml文件的解决办法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">makersy</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">makersy</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">158k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:24</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
